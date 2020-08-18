@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.product_detail.ui
+package com.isaacrf.android_base_app.features.beer_detail.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,11 +12,11 @@ import com.isaacrf.android_base_app.dummy.DummyContent
 
 /**
  * A fragment representing a single Item detail screen.
- * This fragment is either contained in a [ProductListActivity]
- * in two-pane mode (on tablets) or a [ProductDetailActivity]
+ * This fragment is either contained in a [BeerListActivity]
+ * in two-pane mode (on tablets) or a [BeerDetailActivity]
  * on handsets.
  */
-class ProductDetailFragment : Fragment() {
+class BeerDetailFragment : Fragment() {
 
     /**
      * The dummy content this fragment is presenting.
@@ -39,7 +39,7 @@ class ProductDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.product_detail, container, false)
+        val rootView = inflater.inflate(R.layout.beer_detail, container, false)
 
         // Show the dummy content as text in a TextView.
         item?.let {

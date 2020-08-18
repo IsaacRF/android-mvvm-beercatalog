@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.product_detail.ui
+package com.isaacrf.android_base_app.features.beer_detail.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,20 +6,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
-import com.isaacrf.android_base_app.features.product_list.ui.ProductListActivity
+import com.isaacrf.android_base_app.features.beer_list.ui.BeerListActivity
 import com.isaacrf.android_base_app.R
 
 /**
  * An activity representing a single Item detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a [ProductListActivity].
+ * in a [BeerListActivity].
  */
-class ProductDetailActivity : AppCompatActivity() {
+class BeerDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_detail)
+        setContentView(R.layout.activity_beer_detail)
         setSupportActionBar(findViewById(R.id.detail_toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
@@ -42,12 +42,12 @@ class ProductDetailActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            val fragment = ProductDetailFragment()
+            val fragment = BeerDetailFragment()
                 .apply {
                 arguments = Bundle().apply {
                     putString(
-                        ProductDetailFragment.ARG_ITEM_ID,
-                            intent.getStringExtra(ProductDetailFragment.ARG_ITEM_ID))
+                        BeerDetailFragment.ARG_ITEM_ID,
+                            intent.getStringExtra(BeerDetailFragment.ARG_ITEM_ID))
                 }
             }
 
@@ -67,7 +67,7 @@ class ProductDetailActivity : AppCompatActivity() {
                     //
                     // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-                    navigateUpTo(Intent(this, ProductListActivity::class.java))
+                    navigateUpTo(Intent(this, BeerListActivity::class.java))
 
                     true
                 }

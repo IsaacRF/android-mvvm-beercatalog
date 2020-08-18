@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".features.product_list.ui.ProductListActivity"
-    tools:listitem="@layout/product_list_content" />
+    tools:context=".features.beer_list.ui.BeerListActivity"
+    tools:listitem="@layout/beer_list_content" />

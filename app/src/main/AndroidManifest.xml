@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".features.product_list.ui.ProductListActivity"
+            android:name=".features.beer_list.ui.BeerListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.product_detail.ui.ProductDetailActivity"
+            android:name=".features.beer_detail.ui.BeerDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".features.product_list.ui.ProductListActivity"
+            android:parentActivityName=".features.beer_list.ui.BeerListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.isaacrf.android_base_app.features.product_list.ui.ProductListActivity" />
+                android:value="com.isaacrf.android_base_app.features.beer_list.ui.BeerListActivity" />
         </activity>
     </application>
 

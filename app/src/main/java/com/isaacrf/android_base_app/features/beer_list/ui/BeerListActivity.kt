@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.product_list.ui
+package com.isaacrf.android_base_app.features.beer_list.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,18 +15,18 @@ import android.widget.TextView
 import com.isaacrf.android_base_app.R
 
 import com.isaacrf.android_base_app.dummy.DummyContent
-import com.isaacrf.android_base_app.features.product_detail.ui.ProductDetailActivity
-import com.isaacrf.android_base_app.features.product_detail.ui.ProductDetailFragment
+import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailActivity
+import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment
 
 /**
  * An activity representing a list of Pings. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a [ProductDetailActivity] representing
+ * lead to a [BeerDetailActivity] representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-class ProductListActivity : AppCompatActivity() {
+class BeerListActivity : AppCompatActivity() {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -36,7 +36,7 @@ class ProductListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item_list)
+        setContentView(R.layout.activity_beer_list)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -67,7 +67,7 @@ class ProductListActivity : AppCompatActivity() {
             )
     }
 
-    class SimpleItemRecyclerViewAdapter(private val parentActivity: ProductListActivity,
+    class SimpleItemRecyclerViewAdapter(private val parentActivity: BeerListActivity,
                                         private val values: List<DummyContent.DummyItem>,
                                         private val twoPane: Boolean) :
             RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
@@ -78,10 +78,10 @@ class ProductListActivity : AppCompatActivity() {
             onClickListener = View.OnClickListener { v ->
                 val item = v.tag as DummyContent.DummyItem
                 if (twoPane) {
-                    val fragment = ProductDetailFragment()
+                    val fragment = BeerDetailFragment()
                         .apply {
                         arguments = Bundle().apply {
-                            putString(ProductDetailFragment.ARG_ITEM_ID, item.id)
+                            putString(BeerDetailFragment.ARG_ITEM_ID, item.id)
                         }
                     }
                     parentActivity.supportFragmentManager
@@ -89,8 +89,8 @@ class ProductListActivity : AppCompatActivity() {
                             .replace(R.id.item_detail_container, fragment)
                             .commit()
                 } else {
-                    val intent = Intent(v.context, ProductDetailActivity::class.java).apply {
-                        putExtra(ProductDetailFragment.ARG_ITEM_ID, item.id)
+                    val intent = Intent(v.context, BeerDetailActivity::class.java).apply {
+                        putExtra(BeerDetailFragment.ARG_ITEM_ID, item.id)
                     }
                     v.context.startActivity(intent)
                 }
@@ -99,7 +99,7 @@ class ProductListActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.product_list_content, parent, false)
+                    .inflate(R.layout.beer_list_content, parent, false)
             return ViewHolder(view)
         }
 

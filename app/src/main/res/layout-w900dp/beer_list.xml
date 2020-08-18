@@ -10,7 +10,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".features.product_list.ui.ProductListActivity">
+    tools:context=".features.beer_list.ui.BeerListActivity">
 
     <!--
     This layout is a two-pane layout for the Items master/detail flow.
@@ -31,7 +31,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context="com.isaacrf.android_base_app.features.product_list.ui.ProductListActivity"
-        tools:listitem="@layout/product_list_content" />
+        tools:context="com.isaacrf.android_base_app.features.beer_list.ui.BeerListActivity"
+        tools:listitem="@layout/beer_list_content" />
 
 </LinearLayout>

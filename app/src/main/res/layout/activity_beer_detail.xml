@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".features.product_detail.ui.ProductDetailActivity"
+    tools:context=".features.beer_detail.ui.BeerDetailActivity"
     tools:ignore="MergeRootFrame">
 
     <androidx.core.widget.NestedScrollView

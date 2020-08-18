@@ -38,9 +38,10 @@ android {
 dependencies {
     def lifecycle_version = "2.2.0"
     def activity_version = "1.1.0"
+    def fragment_version = "1.2.5"
     def retrofit_version = "2.7.1"
     def okhttp_version = "3.12.12"
-    def hilt_lifecycle_version = "1.0.0-alpha01"
+    def hilt_lifecycle_version = "1.0.0-alpha02"
     def hilt_version = "2.28.1-alpha"
     def mockito_version = "2.19.0"
 
@@ -60,7 +61,9 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_version"
     // Activity
     implementation "androidx.activity:activity-ktx:$activity_version"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta8"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-rc1"
+    //Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     // LiveData

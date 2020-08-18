@@ -2,6 +2,7 @@ package com.isaacrf.android_base_app.features.beer_list.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.NestedScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +13,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.isaacrf.android_base_app.R
 
 import com.isaacrf.android_base_app.dummy.DummyContent
 import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailActivity
 import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment
+import com.isaacrf.android_base_app.features.beer_list.viewmodels.BeerListViewModel
+import com.isaacrf.android_base_app.shared.Status
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * An activity representing a list of Pings. This activity
@@ -26,7 +33,14 @@ import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
+@AndroidEntryPoint
 class BeerListActivity : AppCompatActivity() {
+
+    /**
+     * ViewModel controls business logic and data representation. A saved state factory is created
+     * to provide state retain across activity life cycle
+     */
+    private val repoListViewModel: BeerListViewModel by viewModels()
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -41,6 +55,22 @@ class BeerListActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.title = title
+
+        //Observe live data changes and update UI accordingly
+        //TODO: Update UI
+        repoListViewModel.beerList.observe(this) {
+            when(it.status) {
+                Status.LOADING -> {
+                    Log.d("GET BEERS", "LOADING...")
+                }
+                Status.SUCCESS -> {
+                    Log.d("GET BEERS", "SUCCESS")
+                }
+                Status.ERROR -> {
+                    Log.d("GET BEERS", "ERROR")
+                }
+            }
+        }
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

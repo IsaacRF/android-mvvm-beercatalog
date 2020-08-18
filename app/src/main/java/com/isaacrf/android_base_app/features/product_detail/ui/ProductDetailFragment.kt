@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app
+package com.isaacrf.android_base_app.features.product_detail.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,15 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.isaacrf.android_base_app.R
 import com.isaacrf.android_base_app.dummy.DummyContent
 
 /**
  * A fragment representing a single Item detail screen.
- * This fragment is either contained in a [ItemListActivity]
- * in two-pane mode (on tablets) or a [ItemDetailActivity]
+ * This fragment is either contained in a [ProductListActivity]
+ * in two-pane mode (on tablets) or a [ProductDetailActivity]
  * on handsets.
  */
-class ItemDetailFragment : Fragment() {
+class ProductDetailFragment : Fragment() {
 
     /**
      * The dummy content this fragment is presenting.
@@ -38,7 +39,7 @@ class ItemDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.item_detail, container, false)
+        val rootView = inflater.inflate(R.layout.product_detail, container, false)
 
         // Show the dummy content as text in a TextView.
         item?.let {

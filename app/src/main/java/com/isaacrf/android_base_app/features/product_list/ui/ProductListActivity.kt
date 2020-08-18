@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app
+package com.isaacrf.android_base_app.features.product_list.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,18 +12,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.isaacrf.android_base_app.R
 
 import com.isaacrf.android_base_app.dummy.DummyContent
+import com.isaacrf.android_base_app.features.product_detail.ui.ProductDetailActivity
+import com.isaacrf.android_base_app.features.product_detail.ui.ProductDetailFragment
 
 /**
  * An activity representing a list of Pings. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a [ItemDetailActivity] representing
+ * lead to a [ProductDetailActivity] representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-class ItemListActivity : AppCompatActivity() {
+class ProductListActivity : AppCompatActivity() {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -56,10 +59,15 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, twoPane)
+        recyclerView.adapter =
+            SimpleItemRecyclerViewAdapter(
+                this,
+                DummyContent.ITEMS,
+                twoPane
+            )
     }
 
-    class SimpleItemRecyclerViewAdapter(private val parentActivity: ItemListActivity,
+    class SimpleItemRecyclerViewAdapter(private val parentActivity: ProductListActivity,
                                         private val values: List<DummyContent.DummyItem>,
                                         private val twoPane: Boolean) :
             RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
@@ -70,9 +78,10 @@ class ItemListActivity : AppCompatActivity() {
             onClickListener = View.OnClickListener { v ->
                 val item = v.tag as DummyContent.DummyItem
                 if (twoPane) {
-                    val fragment = ItemDetailFragment().apply {
+                    val fragment = ProductDetailFragment()
+                        .apply {
                         arguments = Bundle().apply {
-                            putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                            putString(ProductDetailFragment.ARG_ITEM_ID, item.id)
                         }
                     }
                     parentActivity.supportFragmentManager
@@ -80,8 +89,8 @@ class ItemListActivity : AppCompatActivity() {
                             .replace(R.id.item_detail_container, fragment)
                             .commit()
                 } else {
-                    val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                        putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                    val intent = Intent(v.context, ProductDetailActivity::class.java).apply {
+                        putExtra(ProductDetailFragment.ARG_ITEM_ID, item.id)
                     }
                     v.context.startActivity(intent)
                 }
@@ -90,7 +99,7 @@ class ItemListActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_list_content, parent, false)
+                    .inflate(R.layout.product_list_content, parent, false)
             return ViewHolder(view)
         }
 

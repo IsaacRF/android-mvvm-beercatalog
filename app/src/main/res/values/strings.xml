@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">android-base-app</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="placeholder_beer_image">Beer Image</string>
+    <string name="placeholder_beer_abv">Alcohol by Volume</string>
+    <string name="placeholder_beer_name">Beer Name</string>
+    <string name="placeholder_beer_tagline">Beer Tagline</string>
 </resources>

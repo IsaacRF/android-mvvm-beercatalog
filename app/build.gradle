@@ -43,6 +43,7 @@ dependencies {
     def okhttp_version = "3.12.12"
     def hilt_lifecycle_version = "1.0.0-alpha02"
     def hilt_version = "2.28.1-alpha"
+    def room_version = "2.2.5"
     def mockito_version = "2.19.0"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -81,6 +82,9 @@ dependencies {
         }
     }
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
     // EpicBitmapRenderer (library developed by me)
     implementation 'com.isaacrf.epicbitmaprenderer:epicbitmaprenderer:1.0'
 

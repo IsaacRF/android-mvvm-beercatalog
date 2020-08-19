@@ -1,7 +1,12 @@
-package com.isaacrf.android_base_app.features.beer_list.services
+package com.isaacrf.android_base_app.features.beer_list.di
 
+import android.app.Application
+import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.isaacrf.android_base_app.features.beer_list.db.BeerDao
+import com.isaacrf.android_base_app.features.beer_list.db.BeerDatabase
+import com.isaacrf.android_base_app.features.beer_list.services.BeerListService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +23,7 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(ApplicationComponent::class)
-object BeerListServiceModule {
+object BeerListModule {
     /**
      * Builds and returns the Gson converter
      */
@@ -66,5 +71,20 @@ object BeerListServiceModule {
         val retrofit = getRetrofit("https://api.punkapi.com/v2/", okHttpClient, gson)
 
         return retrofit.create(BeerListService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDb(app: Application): BeerDatabase {
+        return Room
+            .databaseBuilder(app, BeerDatabase::class.java, "beer.db")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideBeerDao(db: BeerDatabase): BeerDao {
+        return db.beerDao()
     }
 }

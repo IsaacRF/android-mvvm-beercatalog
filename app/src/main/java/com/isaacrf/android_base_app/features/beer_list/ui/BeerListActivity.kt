@@ -23,6 +23,7 @@ import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailActivity
 import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment
 import com.isaacrf.android_base_app.features.beer_list.models.Beer
 import com.isaacrf.android_base_app.features.beer_list.viewmodels.BeerListViewModel
+import com.isaacrf.android_base_app.shared.NetworkResource
 import com.isaacrf.android_base_app.shared.Status
 import com.isaacrf.epicbitmaprenderer.core.EpicBitmapRenderer
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,8 +61,8 @@ class BeerListActivity : AppCompatActivity() {
         toolbar.title = title
 
         //Observe live data changes and update UI accordingly
-        beerListViewModel.beerList.observe(this) {
-            when(it.status) {
+        beerListViewModel.getBeers().observe(this) {
+            when (it.status) {
                 Status.LOADING -> {
                     Log.d("GET BEERS", "LOADING...")
                     txtError.visibility = View.GONE
@@ -82,8 +83,7 @@ class BeerListActivity : AppCompatActivity() {
         }
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            beerListViewModel.changeAvailability(1)
         }
 
         if (findViewById<NestedScrollView>(R.id.item_detail_container) != null) {

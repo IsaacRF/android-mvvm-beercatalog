@@ -23,17 +23,18 @@ class BeerListRepository @Inject constructor(
     private val beerListService: BeerListService,
     private val beerDatabase: BeerDatabase,
     private val beerDao: BeerDao
-){
+) {
     /**
      * GET all beers
      */
-    fun getBeers(): LiveData<NetworkResource<List<Beer>>> {
+    fun getBeers(): MutableLiveData<NetworkResource<List<Beer>>> {
         val data = MutableLiveData<NetworkResource<List<Beer>>>()
         data.value = NetworkResource.loading(null)
         beerListService.getBeers(1).enqueue(object : Callback<List<Beer>> {
             override fun onResponse(call: Call<List<Beer>>, response: Response<List<Beer>>) {
                 data.value = NetworkResource.success(response.body())
             }
+
             override fun onFailure(call: Call<List<Beer>>, t: Throwable) {
                 Log.d("BeerListRepository", "getBeers() - Failure")
                 data.value = NetworkResource.error(t.message!!, null)

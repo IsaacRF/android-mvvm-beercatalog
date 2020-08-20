@@ -6,6 +6,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.isaacrf.android_base_app.features.beer_list.db.BeerDao
 import com.isaacrf.android_base_app.features.beer_list.db.BeerDatabase
+import com.isaacrf.android_base_app.features.beer_list.models.Beer
+import com.isaacrf.android_base_app.features.beer_list.services.BeerDeserializer
 import com.isaacrf.android_base_app.features.beer_list.services.BeerListService
 import dagger.Module
 import dagger.Provides
@@ -29,6 +31,7 @@ object BeerListModule {
      */
     private fun getGson(): Gson {
         return GsonBuilder()
+            .registerTypeAdapter(Beer::class.java, BeerDeserializer())
             .setLenient()
             .create()
     }

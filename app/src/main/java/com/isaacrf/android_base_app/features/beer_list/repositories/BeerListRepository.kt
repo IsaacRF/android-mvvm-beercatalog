@@ -1,19 +1,19 @@
 package com.isaacrf.android_base_app.features.beer_list.repositories
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.isaacrf.android_base_app.features.beer_list.db.BeerDao
 import com.isaacrf.android_base_app.features.beer_list.db.BeerDatabase
 import com.isaacrf.android_base_app.features.beer_list.models.Beer
 import com.isaacrf.android_base_app.features.beer_list.services.BeerListService
+import com.isaacrf.android_base_app.shared.AppExecutors
 import com.isaacrf.android_base_app.shared.NetworkResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.Executor
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 /**
  * Layer to abstract data access to beers
@@ -22,7 +22,8 @@ import javax.inject.Singleton
 class BeerListRepository @Inject constructor(
     private val beerListService: BeerListService,
     private val beerDatabase: BeerDatabase,
-    private val beerDao: BeerDao
+    private val beerDao: BeerDao,
+    private val appExecutors: AppExecutors
 ) {
     /**
      * GET all beers
@@ -30,9 +31,16 @@ class BeerListRepository @Inject constructor(
     fun getBeers(): MutableLiveData<NetworkResource<List<Beer>>> {
         val data = MutableLiveData<NetworkResource<List<Beer>>>()
         data.value = NetworkResource.loading(null)
-        beerListService.getBeers(1).enqueue(object : Callback<List<Beer>> {
+        beerListService.getBeers(1, 80).enqueue(object : Callback<List<Beer>> {
             override fun onResponse(call: Call<List<Beer>>, response: Response<List<Beer>>) {
-                data.value = NetworkResource.success(response.body())
+                appExecutors.diskIO().execute {
+                    beerDao.insert(response.body()!!)
+                    val beers = beerDao.load()
+
+                    appExecutors.mainThread().execute {
+                        data.value = NetworkResource.success(beers)
+                    }
+                }
             }
 
             override fun onFailure(call: Call<List<Beer>>, t: Throwable) {
@@ -49,6 +57,6 @@ class BeerListRepository @Inject constructor(
     fun getBeerAvailability(id: Int): Boolean? {
         val beer = beerDao.load(id)
 
-        return beer.value?.available
+        return beer?.value?.available
     }
 }

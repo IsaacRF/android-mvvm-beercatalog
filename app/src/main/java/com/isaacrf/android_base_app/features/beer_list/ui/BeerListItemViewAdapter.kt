@@ -80,6 +80,13 @@ class BeerListItemViewAdapter(private val parentActivity: BeerListActivity,
                     R.color.colorBeerNotAvailable
                 )
             )
+        } else {
+            holder.itemView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this.parentActivity,
+                    R.color.colorBeerAvailable
+                )
+            )
         }
 
         with(holder.itemView) {

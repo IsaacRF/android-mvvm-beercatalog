@@ -13,8 +13,6 @@
         android:name="com.isaacrf.android_base_app.ItemListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
         tools:context=".features.beer_list.ui.BeerListActivity"
         tools:listitem="@layout/beer_list_content" />

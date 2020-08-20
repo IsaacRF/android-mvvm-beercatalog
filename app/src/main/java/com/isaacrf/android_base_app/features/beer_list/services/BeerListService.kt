@@ -13,5 +13,8 @@ interface BeerListService {
      * @GET Method. Retrieves all beers
      */
     @GET("beers")
-    fun getBeers(@Query("page") page: Int): Call<List<Beer>>
+    fun getBeers(
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int
+    ): Call<List<Beer>>
 }

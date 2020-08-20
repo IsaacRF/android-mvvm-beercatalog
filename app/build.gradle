@@ -88,6 +88,8 @@ dependencies {
     // EpicBitmapRenderer (library developed by me)
     implementation 'com.isaacrf.epicbitmaprenderer:epicbitmaprenderer:1.0'
 
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
     testImplementation 'junit:junit:4.12'
     ///Mockito
     testImplementation "org.mockito:mockito-core:$mockito_version"

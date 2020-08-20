@@ -17,6 +17,8 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.isaacrf.android_base_app.R
 
 import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailActivity
@@ -51,6 +53,8 @@ class BeerListActivity : AppCompatActivity() {
      * device.
      */
     private var twoPane: Boolean = false
+
+    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +100,14 @@ class BeerListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView, items: List<Beer>) {
+        layoutManager = LinearLayoutManager(this)
+        val dividerItemDecoration = DividerItemDecoration(
+            rvBeerList.context,
+            layoutManager.orientation
+        )
+        rvBeerList.addItemDecoration(dividerItemDecoration)
+        rvBeerList.layoutManager = layoutManager
+
         recyclerView.adapter =
             BeerListItemViewAdapter(
                 this,

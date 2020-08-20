@@ -1,6 +1,5 @@
 package com.isaacrf.android_base_app.features.beer_list.ui
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,12 +16,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import com.isaacrf.android_base_app.AndroidBaseApp
 import com.isaacrf.android_base_app.R
 
-import com.isaacrf.android_base_app.dummy.DummyContent
 import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailActivity
 import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment
 import com.isaacrf.android_base_app.features.beer_list.models.Beer
@@ -31,7 +27,6 @@ import com.isaacrf.android_base_app.shared.Status
 import com.isaacrf.epicbitmaprenderer.core.EpicBitmapRenderer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.beer_list.*
-import kotlinx.android.synthetic.main.beer_list_item_view.view.*
 
 /**
  * An activity representing a list of Pings. This activity
@@ -48,7 +43,7 @@ class BeerListActivity : AppCompatActivity() {
      * ViewModel controls business logic and data representation. A saved state factory is created
      * to provide state retain across activity life cycle
      */
-    private val repoListViewModel: BeerListViewModel by viewModels()
+    private val beerListViewModel: BeerListViewModel by viewModels()
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -65,18 +60,23 @@ class BeerListActivity : AppCompatActivity() {
         toolbar.title = title
 
         //Observe live data changes and update UI accordingly
-        //TODO: Update UI
-        repoListViewModel.beerList.observe(this) {
+        beerListViewModel.beerList.observe(this) {
             when(it.status) {
                 Status.LOADING -> {
                     Log.d("GET BEERS", "LOADING...")
+                    txtError.visibility = View.GONE
+                    pbRepoListLoading.visibility = View.VISIBLE
                 }
                 Status.SUCCESS -> {
                     Log.d("GET BEERS", "SUCCESS")
-                    setupRecyclerView(findViewById(R.id.rvBeerList), it.data!!)
+                    setupRecyclerView(rvBeerList, it.data!!)
+                    pbRepoListLoading.visibility = View.GONE
                 }
                 Status.ERROR -> {
                     Log.d("GET BEERS", "ERROR")
+                    pbRepoListLoading.visibility = View.GONE
+                    txtError.visibility = View.VISIBLE
+                    txtError.text = it.message
                 }
             }
         }
@@ -93,9 +93,6 @@ class BeerListActivity : AppCompatActivity() {
             // activity should be in two-pane mode.
             twoPane = true
         }
-
-        //TODO: Delete
-        //setupRecyclerView(findViewById(R.id.item_list))
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView, items: List<Beer>) {

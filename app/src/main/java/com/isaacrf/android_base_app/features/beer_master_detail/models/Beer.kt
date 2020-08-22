@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerTypeConverters
 
 /**
- * A representation of a beer product
+ * A representation of a beer
  */
 @Entity
 data class Beer (

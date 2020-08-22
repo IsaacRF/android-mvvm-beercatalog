@@ -76,6 +76,9 @@ object BeerListModule {
         return retrofit.create(BeerListService::class.java)
     }
 
+    /**
+     * Provides instantiation for Room Database
+     */
     @Singleton
     @Provides
     fun provideDb(app: Application): BeerDatabase {
@@ -85,6 +88,9 @@ object BeerListModule {
             .build()
     }
 
+    /**
+     * Provides instantiation for BeerDao
+     */
     @Singleton
     @Provides
     fun provideBeerDao(db: BeerDatabase): BeerDao {

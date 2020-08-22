@@ -34,6 +34,7 @@ class BeerListItemViewAdapter(
                 putString(BeerDetailFragment.ARG_ITEM_ID, item.id.toString())
             }
 
+            //If view is in TwoPane mode, add the fragment to view. Navigate to fragment otherwise
             if (twoPane) {
                 val fragment = BeerDetailFragment()
                     .apply {

@@ -57,7 +57,6 @@ class BeerDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.beer_detail, container, false)
 
-        //TODO: Set change availability action
         rootView.findViewById<FloatingActionButton>(R.id.button_beerdetail_changeavailability)
             .setOnClickListener {
                 beerListViewModel

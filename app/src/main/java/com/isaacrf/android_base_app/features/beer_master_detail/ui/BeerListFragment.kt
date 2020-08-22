@@ -19,7 +19,7 @@ import com.isaacrf.android_base_app.shared.helpers.Status
 import com.isaacrf.android_base_app.shared.ui.MainActivity
 import kotlinx.android.synthetic.main.beer_list.*
 
-class BeerListFragment: Fragment() {
+class BeerListFragment : Fragment() {
 
     /**
      * ViewModel controls business logic and data representation. A saved state factory is created
@@ -29,6 +29,7 @@ class BeerListFragment: Fragment() {
     private lateinit var layoutManager: LinearLayoutManager
     private var persistingView: View? = null
     private var beerListItemViewAdapter: BeerListItemViewAdapter? = null
+
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -38,37 +39,42 @@ class BeerListFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Observe live data changes and update UI accordingly
         beerListViewModel.getBeers().observe(this) {
-            //Observe live data changes and update UI accordingly
-            beerListViewModel.getBeers().observe(this) {
-                when (it.status) {
-                    Status.LOADING -> {
-                        Log.d("GET BEERS", "LOADING...")
-                        txtError.visibility = View.GONE
-                        pbRepoListLoading.visibility = View.VISIBLE
+            when (it.status) {
+                Status.LOADING -> {
+                    Log.d("GET BEERS", "LOADING...")
+                    txtError.visibility = View.GONE
+                    pbRepoListLoading.visibility = View.VISIBLE
+                }
+                Status.SUCCESS -> {
+                    Log.d("GET BEERS", "SUCCESS")
+                    if (beerListItemViewAdapter != null) {
+                        beerListItemViewAdapter?.notifyDataSetChanged()
+                    } else {
+                        setupRecyclerView(recycler_beerlist, it.data!!)
                     }
-                    Status.SUCCESS -> {
-                        Log.d("GET BEERS", "SUCCESS")
-                        if (beerListItemViewAdapter != null) {
-                            beerListItemViewAdapter?.notifyDataSetChanged()
-                        } else {
-                            setupRecyclerView(recycler_beerlist, it.data!!)
-                        }
-                        pbRepoListLoading.visibility = View.GONE
-                    }
-                    Status.ERROR -> {
-                        Log.d("GET BEERS", "ERROR")
-                        pbRepoListLoading.visibility = View.GONE
-                        txtError.visibility = View.VISIBLE
-                        txtError.text = it.message
-                    }
+                    pbRepoListLoading.visibility = View.GONE
+                }
+                Status.ERROR -> {
+                    Log.d("GET BEERS", "ERROR")
+                    pbRepoListLoading.visibility = View.GONE
+                    txtError.visibility = View.VISIBLE
+                    txtError.text = it.message
                 }
             }
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        /*NOTE: On complex view hierarchies, it's a potential memory leak to store views in memory.
+        However, as Android new Navigation system destroys and recreate fragment views on every
+        navigation and extra info such as scroll is lost, I'm storing it in memory for now given that
+        app view hierarchy is simple.
+         */
         if (persistingView == null) {
             persistingView = inflater.inflate(R.layout.beer_list, container, false)
         }
@@ -84,6 +90,9 @@ class BeerListFragment: Fragment() {
         return persistingView
     }
 
+    /**
+     * Configures beer list recycler view
+     */
     private fun setupRecyclerView(recyclerView: RecyclerView, items: List<Beer>) {
         layoutManager = LinearLayoutManager(activity)
         val dividerItemDecoration = DividerItemDecoration(

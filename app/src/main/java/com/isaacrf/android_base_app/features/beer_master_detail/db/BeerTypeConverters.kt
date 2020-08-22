@@ -6,9 +6,7 @@ object BeerTypeConverters {
     @TypeConverter
     @JvmStatic
     fun stringToStringList(data: String?): List<String>? {
-        return data?.let {
-            it.split(",")
-        }
+        return data?.split(",")
     }
 
     @TypeConverter

@@ -17,7 +17,7 @@ abstract class BeerDao {
     abstract fun update(beer: Beer)
 
     @Query("SELECT * FROM Beer WHERE id = :beerId")
-    abstract fun load(beerId: Int): LiveData<Beer>?
+    abstract fun load(beerId: Int): Beer?
 
     @Query("SELECT * FROM Beer")
     abstract fun load(): List<Beer>?

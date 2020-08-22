@@ -22,4 +22,9 @@ class BeerDetailViewModel @ViewModelInject constructor(
     fun setBeer(beer: Beer?) {
         this.beer.value = beer
     }
+
+    fun changeAvailability() {
+        this.beer.value?.available = !this.beer.value?.available!!
+        this.beer.value = this.beer.value
+    }
 }

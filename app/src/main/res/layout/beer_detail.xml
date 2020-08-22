@@ -20,13 +20,25 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/text_beerdetail_availability"
+                style="?android:attr/textAppearanceLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
+                android:textIsSelectable="true"
+                app:drawableStartCompat="@drawable/ic_barrel" />
+
+            <TextView
                 android:id="@+id/text_beerdetail_description"
                 style="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="32dp"
-                android:paddingBottom="16dp"
                 android:paddingStart="16dp"
+                android:paddingTop="12dp"
                 android:paddingEnd="16dp"
                 android:textIsSelectable="true" />
 
@@ -36,12 +48,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="16dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 android:paddingStart="16dp"
+                android:paddingTop="12dp"
                 android:paddingEnd="16dp"
                 android:textIsSelectable="true"
-                app:drawableStartCompat="@android:drawable/btn_star_big_on" />
+                app:drawableStartCompat="@drawable/ic_drink" />
 
             <TextView
                 android:id="@+id/text_beerdetail_bitterness"
@@ -49,12 +60,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="16dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 android:paddingStart="16dp"
+                android:paddingTop="12dp"
                 android:paddingEnd="16dp"
                 android:textIsSelectable="true"
-                app:drawableStartCompat="@android:drawable/btn_star_big_on" />
+                app:drawableStartCompat="@drawable/ic_bitter" />
 
             <TextView
                 android:id="@+id/text_beerdetail_foodpairing"
@@ -62,25 +72,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="16dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textIsSelectable="true"
-                app:drawableStartCompat="@android:drawable/btn_star_big_on" />
-
-            <TextView
-                android:id="@+id/text_beerdetail_availability"
-                style="?android:attr/textAppearanceLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="16dp"
                 android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
                 android:textIsSelectable="true"
-                app:drawableStartCompat="@android:drawable/btn_star_big_on" />
+                app:drawableStartCompat="@drawable/ic_food" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -117,13 +114,14 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnChangeAvailability"
+        android:id="@+id/button_beerdetail_changeavailability"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|start"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/beer_detail_container"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        app:maxImageSize="36dp"
+        app:srcCompat="@drawable/ic_barrel_ok" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

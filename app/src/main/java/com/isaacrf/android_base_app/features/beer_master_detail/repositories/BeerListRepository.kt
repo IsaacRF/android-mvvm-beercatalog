@@ -1,6 +1,7 @@
 package com.isaacrf.android_base_app.features.beer_master_detail.repositories
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerDao
 import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerDatabase
@@ -52,11 +53,20 @@ class BeerListRepository @Inject constructor(
     }
 
     /**
-     * Retrieves Beer availability from DB
+     * Update Beer info in DB
      */
-    fun getBeerAvailability(id: Int): Boolean? {
-        val beer = beerDao.load(id)
+    fun updateBeer(beer: Beer): LiveData<Beer> {
+        val beerUpdated: MutableLiveData<Beer> = MutableLiveData()
 
-        return beer?.value?.available
+        appExecutors.diskIO().execute {
+            beerDao.update(beer)
+            val dbBeer = beerDao.load(beer.id)
+
+            appExecutors.mainThread().execute {
+                beerUpdated.value = dbBeer
+            }
+        }
+
+        return beerUpdated
     }
 }

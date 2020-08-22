@@ -31,8 +31,6 @@
             android:name="com.isaacrf.android_base_app.ItemListFragment"
             android:layout_width="@dimen/item_width"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
             tools:context="com.isaacrf.android_base_app.shared.ui.MainActivity"
             tools:listitem="@layout/beer_list_item_view" />

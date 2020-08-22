@@ -8,12 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.isaacrf.android_base_app.R
 import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
 import com.isaacrf.android_base_app.features.beer_master_detail.viewmodels.BeerDetailViewModel
@@ -60,10 +58,13 @@ class BeerDetailFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.beer_detail, container, false)
 
         //TODO: Set change availability action
-        rootView.findViewById<FloatingActionButton>(R.id.btnChangeAvailability)
-            .setOnClickListener { view ->
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        rootView.findViewById<FloatingActionButton>(R.id.button_beerdetail_changeavailability)
+            .setOnClickListener {
+                beerListViewModel
+                    .changeAvailability(beerDetailViewModel.getBeer().value?.id!!)
+                    .observe(viewLifecycleOwner) {beer ->
+                        beerDetailViewModel.setBeer(beer)
+                    }
             }
 
         return rootView
@@ -91,6 +92,10 @@ class BeerDetailFragment : Fragment() {
         text_beerdetail_availability.setTextColor(
             if(beer.available) ContextCompat.getColor(requireContext(), R.color.colorTextBeerAvailable)
             else ContextCompat.getColor(requireContext(), R.color.colorTextBeerNotAvailable)
+        )
+        button_beerdetail_changeavailability.setImageResource(
+            if(beer.available) R.drawable.ic_barrel_no
+            else R.drawable.ic_barrel_ok
         )
     }
 

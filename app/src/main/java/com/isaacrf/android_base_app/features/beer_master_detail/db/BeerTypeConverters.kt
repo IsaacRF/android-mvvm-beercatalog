@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.beer_list.db
+package com.isaacrf.android_base_app.features.beer_master_detail.db
 
 import androidx.room.TypeConverter
 

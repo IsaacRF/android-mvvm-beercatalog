@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.beer_detail.ui
+package com.isaacrf.android_base_app.features.beer_master_detail.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.isaacrf.android_base_app.R
 import com.isaacrf.android_base_app.dummy.DummyContent
-import com.isaacrf.android_base_app.features.beer_list.viewmodels.BeerListViewModel
+import com.isaacrf.android_base_app.features.beer_master_detail.viewmodels.BeerListViewModel
 
 /**
  * A fragment representing a single Item detail screen.

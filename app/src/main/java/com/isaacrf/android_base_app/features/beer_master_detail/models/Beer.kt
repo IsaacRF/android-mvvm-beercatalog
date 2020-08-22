@@ -1,12 +1,10 @@
-package com.isaacrf.android_base_app.features.beer_list.models
+package com.isaacrf.android_base_app.features.beer_master_detail.models
 
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.isaacrf.android_base_app.features.beer_list.db.BeerTypeConverters
+import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerTypeConverters
 
 /**
  * A representation of a beer product

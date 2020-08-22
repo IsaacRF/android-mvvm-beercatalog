@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.beer_detail.ui
+package com.isaacrf.android_base_app.features.beer_master_detail.ui
 
 import android.content.Intent
 import android.os.Bundle

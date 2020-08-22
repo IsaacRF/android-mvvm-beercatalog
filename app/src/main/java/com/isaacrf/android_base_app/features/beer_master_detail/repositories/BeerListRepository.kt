@@ -1,11 +1,11 @@
-package com.isaacrf.android_base_app.features.beer_list.repositories
+package com.isaacrf.android_base_app.features.beer_master_detail.repositories
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.isaacrf.android_base_app.features.beer_list.db.BeerDao
-import com.isaacrf.android_base_app.features.beer_list.db.BeerDatabase
-import com.isaacrf.android_base_app.features.beer_list.models.Beer
-import com.isaacrf.android_base_app.features.beer_list.services.BeerListService
+import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerDao
+import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerDatabase
+import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
+import com.isaacrf.android_base_app.features.beer_master_detail.services.BeerListService
 import com.isaacrf.android_base_app.shared.helpers.AppExecutors
 import com.isaacrf.android_base_app.shared.helpers.NetworkResource
 import retrofit2.Call

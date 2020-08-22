@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.beer_list.viewmodels
+package com.isaacrf.android_base_app.features.beer_master_detail.viewmodels
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.isaacrf.android_base_app.features.beer_list.models.Beer
-import com.isaacrf.android_base_app.features.beer_list.repositories.BeerListRepository
+import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
+import com.isaacrf.android_base_app.features.beer_master_detail.repositories.BeerListRepository
 import com.isaacrf.android_base_app.shared.helpers.NetworkResource
 
 class BeerListViewModel @ViewModelInject constructor(

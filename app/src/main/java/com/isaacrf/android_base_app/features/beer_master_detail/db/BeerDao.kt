@@ -1,9 +1,9 @@
-package com.isaacrf.android_base_app.features.beer_list.db
+package com.isaacrf.android_base_app.features.beer_master_detail.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.*
-import com.isaacrf.android_base_app.features.beer_list.models.Beer
+import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
 
 @Dao
 abstract class BeerDao {

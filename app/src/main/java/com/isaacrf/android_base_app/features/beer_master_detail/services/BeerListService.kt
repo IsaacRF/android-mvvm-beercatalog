@@ -1,6 +1,6 @@
-package com.isaacrf.android_base_app.features.beer_list.services
+package com.isaacrf.android_base_app.features.beer_master_detail.services
 
-import com.isaacrf.android_base_app.features.beer_list.models.Beer
+import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

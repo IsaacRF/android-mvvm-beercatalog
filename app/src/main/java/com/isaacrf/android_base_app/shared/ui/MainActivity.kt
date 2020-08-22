@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.isaacrf.android_base_app.R
 
-import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailActivity
+import com.isaacrf.android_base_app.features.beer_master_detail.ui.BeerDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

@@ -1,14 +1,14 @@
-package com.isaacrf.android_base_app.features.beer_list.di
+package com.isaacrf.android_base_app.features.beer_master_detail.di
 
 import android.app.Application
 import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.isaacrf.android_base_app.features.beer_list.db.BeerDao
-import com.isaacrf.android_base_app.features.beer_list.db.BeerDatabase
-import com.isaacrf.android_base_app.features.beer_list.models.Beer
-import com.isaacrf.android_base_app.features.beer_list.services.BeerDeserializer
-import com.isaacrf.android_base_app.features.beer_list.services.BeerListService
+import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerDao
+import com.isaacrf.android_base_app.features.beer_master_detail.db.BeerDatabase
+import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
+import com.isaacrf.android_base_app.features.beer_master_detail.services.BeerDeserializer
+import com.isaacrf.android_base_app.features.beer_master_detail.services.BeerListService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

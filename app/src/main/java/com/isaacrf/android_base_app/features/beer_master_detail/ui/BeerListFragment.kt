@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.beer_list.ui
+package com.isaacrf.android_base_app.features.beer_master_detail.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.isaacrf.android_base_app.R
-import com.isaacrf.android_base_app.features.beer_list.models.Beer
-import com.isaacrf.android_base_app.features.beer_list.viewmodels.BeerListViewModel
+import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
+import com.isaacrf.android_base_app.features.beer_master_detail.viewmodels.BeerListViewModel
 import com.isaacrf.android_base_app.shared.helpers.Status
 import com.isaacrf.android_base_app.shared.ui.MainActivity
 import kotlinx.android.synthetic.main.beer_list.*

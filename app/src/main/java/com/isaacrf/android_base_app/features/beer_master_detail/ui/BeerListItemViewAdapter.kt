@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.features.beer_list.ui
+package com.isaacrf.android_base_app.features.beer_master_detail.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +12,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.isaacrf.epicbitmaprenderer.core.EpicBitmapRenderer
 import com.isaacrf.android_base_app.R
-import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment
-import com.isaacrf.android_base_app.features.beer_list.models.Beer
+import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
 import com.isaacrf.android_base_app.shared.ui.MainActivity
 
 /**

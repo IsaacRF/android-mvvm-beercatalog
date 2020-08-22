@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.beer_detail.ui.BeerDetailActivity"
+            android:name=".features.beer_master_detail.ui.BeerDetailActivity"
             android:label="@string/title_item_detail"
             android:parentActivityName=".shared.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

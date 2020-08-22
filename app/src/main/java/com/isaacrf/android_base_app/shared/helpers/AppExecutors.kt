@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.shared
+package com.isaacrf.android_base_app.shared.helpers
 
 import android.os.Handler
 import android.os.Looper

@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".features.beer_list.ui.BeerListActivity"
-        tools:listitem="@layout/beer_list_content" />
+        tools:context=".shared.ui.MainActivity"
+        tools:listitem="@layout/beer_list_item_view" />
 
     <TextView
         android:id="@+id/txtError"

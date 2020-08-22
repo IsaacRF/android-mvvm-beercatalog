@@ -1,7 +1,5 @@
 package com.isaacrf.android_base_app.features.beer_list.ui
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,20 +8,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.isaacrf.epicbitmaprenderer.core.EpicBitmapRenderer
 import com.isaacrf.android_base_app.R
-import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailActivity
 import com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment
 import com.isaacrf.android_base_app.features.beer_list.models.Beer
-import kotlinx.android.synthetic.main.beer_list_item_view.view.*
+import com.isaacrf.android_base_app.shared.ui.MainActivity
 
 /**
  * UI Adapter for Beer List RecyclerView items
  */
-class BeerListItemViewAdapter(private val parentActivity: BeerListActivity,
-                                    private val values: List<Beer>,
-                                    private val twoPane: Boolean) :
+class BeerListItemViewAdapter(private val parentActivity: MainActivity,
+                              private val values: List<Beer>,
+                              private val twoPane: Boolean) :
     RecyclerView.Adapter<BeerListItemViewAdapter.ViewHolder>() {
 
     private val onClickListener: View.OnClickListener
@@ -31,22 +29,21 @@ class BeerListItemViewAdapter(private val parentActivity: BeerListActivity,
     init {
         onClickListener = View.OnClickListener { v ->
             val item = v.tag as Beer
+            val args = Bundle().apply {
+                putString(BeerDetailFragment.ARG_ITEM_ID, item.id.toString())
+            }
+
             if (twoPane) {
                 val fragment = BeerDetailFragment()
                     .apply {
-                        arguments = Bundle().apply {
-                            putString(BeerDetailFragment.ARG_ITEM_ID, item.id.toString())
-                        }
+                        arguments = args
                     }
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.item_detail_container, fragment)
                     .commit()
             } else {
-                val intent = Intent(v.context, BeerDetailActivity::class.java).apply {
-                    putExtra(BeerDetailFragment.ARG_ITEM_ID, item.id.toString())
-                }
-                v.context.startActivity(intent)
+                findNavController(parentActivity, R.id.frNavHost).navigate(R.id.action_beerListFragment_to_beerDetailFragment, args)
             }
         }
     }
@@ -71,7 +68,7 @@ class BeerListItemViewAdapter(private val parentActivity: BeerListActivity,
             holder.imgBeer.width,
             holder.imgBeer.height,
             { holder.imgBeer.setImageBitmap(it) },
-            { Log.d("BeerListActivity", "Failed to decode image ${item.imageUrl}") })
+            { Log.d("MainActivity", "Failed to decode image ${item.imageUrl}") })
 
         if (!item.available) {
             holder.itemView.setBackgroundColor(

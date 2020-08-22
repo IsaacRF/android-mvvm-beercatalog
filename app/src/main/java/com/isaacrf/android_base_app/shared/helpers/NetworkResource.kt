@@ -1,4 +1,4 @@
-package com.isaacrf.android_base_app.shared
+package com.isaacrf.android_base_app.shared.helpers
 
 /**
  * Status of a resource that is provided to the UI.

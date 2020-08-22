@@ -6,14 +6,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
-import com.isaacrf.android_base_app.features.beer_list.ui.BeerListActivity
+import com.isaacrf.android_base_app.shared.ui.MainActivity
 import com.isaacrf.android_base_app.R
 
 /**
  * An activity representing a single Item detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a [BeerListActivity].
+ * in a [MainActivity].
  */
 class BeerDetailActivity : AppCompatActivity() {
 
@@ -67,7 +67,7 @@ class BeerDetailActivity : AppCompatActivity() {
                     //
                     // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-                    navigateUpTo(Intent(this, BeerListActivity::class.java))
+                    navigateUpTo(Intent(this, MainActivity::class.java))
 
                     true
                 }

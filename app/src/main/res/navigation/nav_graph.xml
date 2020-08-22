@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/beerListFragment">
+    <fragment
+        android:id="@+id/beerListFragment"
+        android:name="com.isaacrf.android_base_app.features.beer_list.ui.BeerListFragment"
+        android:label="BeerListFragment"
+        tools:layout="@layout/beer_list">
+        <action
+            android:id="@+id/action_beerListFragment_to_beerDetailFragment"
+            app:destination="@id/beerDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/beerDetailFragment"
+        android:name="com.isaacrf.android_base_app.features.beer_detail.ui.BeerDetailFragment"
+        android:label="beer_detail"
+        tools:layout="@layout/beer_detail">
+
+        <action
+            android:id="@+id/action_beerDetailFragment_to_beerListFragment"
+            app:destination="@id/beerListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/beerListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

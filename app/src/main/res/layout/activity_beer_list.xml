@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".features.beer_list.ui.BeerListActivity">
+    tools:context=".shared.ui.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frNavHost"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <include layout="@layout/beer_list" />
-    </FrameLayout>
+        app:defaultNavHost="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:navGraph="@navigation/nav_graph"
+        tools:layout="@layout/beer_list" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"

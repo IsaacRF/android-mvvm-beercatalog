@@ -6,8 +6,8 @@ import com.isaacrf.android_base_app.features.beer_list.db.BeerDao
 import com.isaacrf.android_base_app.features.beer_list.db.BeerDatabase
 import com.isaacrf.android_base_app.features.beer_list.models.Beer
 import com.isaacrf.android_base_app.features.beer_list.services.BeerListService
-import com.isaacrf.android_base_app.shared.AppExecutors
-import com.isaacrf.android_base_app.shared.NetworkResource
+import com.isaacrf.android_base_app.shared.helpers.AppExecutors
+import com.isaacrf.android_base_app.shared.helpers.NetworkResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

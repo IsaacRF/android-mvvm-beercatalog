@@ -7,16 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import com.isaacrf.android_base_app.R
 import com.isaacrf.android_base_app.dummy.DummyContent
+import com.isaacrf.android_base_app.features.beer_list.viewmodels.BeerListViewModel
 
 /**
  * A fragment representing a single Item detail screen.
- * This fragment is either contained in a [BeerListActivity]
- * in two-pane mode (on tablets) or a [BeerDetailActivity]
- * on handsets.
+ * This fragment is either contained in the [MainActivity]
+ * in two-pane mode (on tablets) or as [BeerDetailFragment] by itself
+ * via navigation on handsets.
  */
 class BeerDetailFragment : Fragment() {
+
+    /**
+     * ViewModel controls business logic and data representation. A saved state factory is created
+     * to provide state retain across activity life cycle
+     */
+    private val beerListViewModel: BeerListViewModel by activityViewModels()
 
     /**
      * The dummy content this fragment is presenting.

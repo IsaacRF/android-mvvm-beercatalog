@@ -26,8 +26,4 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = title
     }
-
-
-
-
 }

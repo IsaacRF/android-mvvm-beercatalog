@@ -18,9 +18,11 @@ import com.isaacrf.android_base_app.shared.ui.MainActivity
 /**
  * UI Adapter for Beer List RecyclerView items
  */
-class BeerListItemViewAdapter(private val parentActivity: MainActivity,
-                              private val values: List<Beer>,
-                              private val twoPane: Boolean) :
+class BeerListItemViewAdapter(
+    private val parentActivity: MainActivity,
+    private val values: List<Beer>,
+    private val twoPane: Boolean
+) :
     RecyclerView.Adapter<BeerListItemViewAdapter.ViewHolder>() {
 
     private val onClickListener: View.OnClickListener
@@ -42,7 +44,10 @@ class BeerListItemViewAdapter(private val parentActivity: MainActivity,
                     .replace(R.id.beer_detail_container, fragment)
                     .commit()
             } else {
-                findNavController(parentActivity, R.id.frNavHost).navigate(R.id.action_beerListFragment_to_beerDetailFragment, args)
+                findNavController(
+                    parentActivity,
+                    R.id.frNavHost
+                ).navigate(R.id.action_beerListFragment_to_beerDetailFragment, args)
             }
         }
     }
@@ -69,21 +74,13 @@ class BeerListItemViewAdapter(private val parentActivity: MainActivity,
             { holder.imgBeer.setImageBitmap(it) },
             { Log.d("MainActivity", "Failed to decode image ${item.imageUrl}") })
 
-        if (!item.available) {
-            holder.itemView.setBackgroundColor(
-                ContextCompat.getColor(
-                    this.parentActivity,
-                    R.color.backgroundBeerNotAvailable
-                )
+        holder.itemView.setBackgroundColor(
+            ContextCompat.getColor(
+                this.parentActivity,
+                if (item.available) R.color.backgroundBeerAvailable
+                else R.color.backgroundBeerNotAvailable
             )
-        } else {
-            holder.itemView.setBackgroundColor(
-                ContextCompat.getColor(
-                    this.parentActivity,
-                    R.color.backgroundBeerAvailable
-                )
-            )
-        }
+        )
 
         with(holder.itemView) {
             tag = item

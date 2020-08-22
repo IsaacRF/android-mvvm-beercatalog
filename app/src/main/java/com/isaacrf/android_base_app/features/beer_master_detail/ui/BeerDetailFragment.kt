@@ -69,10 +69,12 @@ class BeerDetailFragment : Fragment() {
         return rootView
     }
 
+    /**
+     * Updates UI info including toolbar title
+     */
     private fun updateUI(beer: Beer) {
         activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = beer.name
 
-        //TODO: Update UI
         EpicBitmapRenderer.decodeBitmapFromUrl(beer.imageUrl,
             image_beer.width,
             image_beer.height,

@@ -39,7 +39,7 @@ class BeerListItemViewAdapter(private val parentActivity: MainActivity,
                     }
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.item_detail_container, fragment)
+                    .replace(R.id.beer_detail_container, fragment)
                     .commit()
             } else {
                 findNavController(parentActivity, R.id.frNavHost).navigate(R.id.action_beerListFragment_to_beerDetailFragment, args)
@@ -73,14 +73,14 @@ class BeerListItemViewAdapter(private val parentActivity: MainActivity,
             holder.itemView.setBackgroundColor(
                 ContextCompat.getColor(
                     this.parentActivity,
-                    R.color.colorBeerNotAvailable
+                    R.color.backgroundBeerNotAvailable
                 )
             )
         } else {
             holder.itemView.setBackgroundColor(
                 ContextCompat.getColor(
                     this.parentActivity,
-                    R.color.colorBeerAvailable
+                    R.color.backgroundBeerAvailable
                 )
             )
         }
@@ -94,9 +94,9 @@ class BeerListItemViewAdapter(private val parentActivity: MainActivity,
     override fun getItemCount() = values.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val txtBeerName: TextView = view.findViewById(R.id.txtBeerName)
-        val txtBeerTagline: TextView = view.findViewById(R.id.txtBeerTagline)
-        val txtAlcoholByVolume: TextView = view.findViewById(R.id.txtAlcoholByVolume)
-        val imgBeer: ImageView = view.findViewById(R.id.imgBeer)
+        val txtBeerName: TextView = view.findViewById(R.id.text_beerlist_beername)
+        val txtBeerTagline: TextView = view.findViewById(R.id.text_beerlist_tagline)
+        val txtAlcoholByVolume: TextView = view.findViewById(R.id.text_beerlist_alcoholbyvolume)
+        val imgBeer: ImageView = view.findViewById(R.id.image_beer)
     }
 }

@@ -3,6 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorBeerNotAvailable">#A1A1A1</color>
-    <color name="colorBeerAvailable">#F6F6F6</color>
+    <color name="backgroundBeerNotAvailable">#A1A1A1</color>
+    <color name="backgroundBeerAvailable">#F6F6F6</color>
+    <color name="colorTextBeerAvailable">#5AA84C</color>
+    <color name="colorTextBeerNotAvailable">#AC4242</color>
 </resources>

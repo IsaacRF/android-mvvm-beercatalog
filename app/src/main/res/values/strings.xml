@@ -5,4 +5,6 @@
     <string name="placeholder_beer_abv">Alcohol by Volume</string>
     <string name="placeholder_beer_name">Beer Name</string>
     <string name="placeholder_beer_tagline">Beer Tagline</string>
+    <string name="beer_not_available">Barrel is empty</string>
+    <string name="beer_available">Beer available</string>
 </resources>

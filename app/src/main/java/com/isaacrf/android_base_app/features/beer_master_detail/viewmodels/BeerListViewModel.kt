@@ -19,12 +19,16 @@ class BeerListViewModel @ViewModelInject constructor(
         loadBeers()
     }
 
+    private fun loadBeers(): MutableLiveData<NetworkResource<List<Beer>>> {
+        return beerListRepository.getBeers()
+    }
+
     fun getBeers(): LiveData<NetworkResource<List<Beer>>> {
         return beers
     }
 
-    private fun loadBeers(): MutableLiveData<NetworkResource<List<Beer>>> {
-        return beerListRepository.getBeers()
+    fun getBeer(beerId: Int?): Beer? {
+        return beers.value?.data?.find { beer -> beer.id == beerId }
     }
 
     fun changeAvailability(beerId: Int) {

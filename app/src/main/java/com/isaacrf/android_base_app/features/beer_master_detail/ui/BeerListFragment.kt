@@ -52,7 +52,7 @@ class BeerListFragment: Fragment() {
                         if (beerListItemViewAdapter != null) {
                             beerListItemViewAdapter?.notifyDataSetChanged()
                         } else {
-                            setupRecyclerView(rvBeerList, it.data!!)
+                            setupRecyclerView(recycler_beerlist, it.data!!)
                         }
                         pbRepoListLoading.visibility = View.GONE
                     }
@@ -73,7 +73,7 @@ class BeerListFragment: Fragment() {
             persistingView = inflater.inflate(R.layout.beer_list, container, false)
         }
 
-        if (persistingView?.findViewById<FrameLayout>(R.id.item_detail_container) != null) {
+        if (persistingView?.findViewById<FrameLayout>(R.id.beer_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
@@ -87,11 +87,11 @@ class BeerListFragment: Fragment() {
     private fun setupRecyclerView(recyclerView: RecyclerView, items: List<Beer>) {
         layoutManager = LinearLayoutManager(activity)
         val dividerItemDecoration = DividerItemDecoration(
-            rvBeerList.context,
+            recycler_beerlist.context,
             layoutManager.orientation
         )
-        rvBeerList.addItemDecoration(dividerItemDecoration)
-        rvBeerList.layoutManager = layoutManager
+        recycler_beerlist.addItemDecoration(dividerItemDecoration)
+        recycler_beerlist.layoutManager = layoutManager
 
         beerListItemViewAdapter = BeerListItemViewAdapter(
             activity as MainActivity,

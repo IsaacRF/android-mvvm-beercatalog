@@ -15,7 +15,7 @@
     -->
 
     <FrameLayout
-        android:id="@+id/item_detail_container"
+        android:id="@+id/beer_detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3" />
@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBeerList"
+            android:id="@+id/recycler_beerlist"
             android:name="com.isaacrf.android_base_app.ItemListFragment"
             android:layout_width="@dimen/item_width"
             android:layout_height="match_parent"

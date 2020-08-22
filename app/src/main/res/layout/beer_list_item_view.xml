@@ -14,7 +14,7 @@
         tools:ignore="UselessParent">
 
         <ImageView
-            android:id="@+id/imgBeer"
+            android:id="@+id/image_beer"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
@@ -26,10 +26,10 @@
             android:src="@mipmap/ic_launcher_round" />
 
         <TextView
-            android:id="@+id/txtAlcoholByVolume"
+            android:id="@+id/text_beerlist_alcoholbyvolume"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imgBeer"
+            android:layout_below="@id/image_beer"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="6dip"
             android:layout_marginRight="6dip"
@@ -41,30 +41,26 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txtBeerTagline"
+            android:id="@+id/text_beerlist_tagline"
             android:layout_width="fill_parent"
             android:layout_height="26dip"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@id/imgBeer"
-            android:layout_toRightOf="@id/imgBeer"
+            android:layout_toEndOf="@id/image_beer"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="@string/placeholder_beer_tagline"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/txtBeerName"
+            android:id="@+id/text_beerlist_beername"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_above="@id/txtBeerTagline"
+            android:layout_above="@id/text_beerlist_tagline"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_toEndOf="@id/imgBeer"
-            android:layout_toRightOf="@id/imgBeer"
+            android:layout_toEndOf="@id/image_beer"
             android:gravity="center_vertical"
             android:text="@string/placeholder_beer_name"
             android:textSize="18sp" />

@@ -1,19 +1,16 @@
 package com.isaacrf.android_base_app.features.beer_master_detail.viewmodels
 
+import com.isaacrf.android_base_app.helpers.MockBeersHelper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
 import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
-import com.isaacrf.android_base_app.helpers.MockBeersHelper
-import com.isaacrf.android_base_app.shared.helpers.NetworkResource
 import junit.framework.Assert.assertTrue
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 class BeerDetailViewModelTest: MockBeersHelper() {

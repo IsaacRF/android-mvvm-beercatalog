@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder
 import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
 import com.isaacrf.android_base_app.features.beer_master_detail.services.BeerDeserializer
 import java.io.BufferedReader
-import java.io.FileReader
+import java.io.InputStreamReader
 
 /**
  * Helper methods to manipulate mocked beers
@@ -23,7 +23,7 @@ abstract class MockBeersHelper {
      */
     fun getMockBeers(): List<Beer> {
         val reader =
-            BufferedReader(FileReader(javaClass.classLoader!!.getResource("mock_responses/BeersResponseSample.json").file))
+            BufferedReader(InputStreamReader(javaClass.classLoader!!.getResourceAsStream("mock_responses/BeersResponseSample.json")))
         return gson.fromJson(reader, Array<Beer>::class.java).toList()
     }
 }

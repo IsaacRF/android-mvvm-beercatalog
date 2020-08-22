@@ -1,15 +1,12 @@
 package com.isaacrf.android_base_app.features.beer_master_detail.viewmodels
 
+import com.isaacrf.android_base_app.helpers.MockBeersHelper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.isaacrf.android_base_app.features.beer_master_detail.models.Beer
 import com.isaacrf.android_base_app.features.beer_master_detail.repositories.BeerListRepository
-import com.isaacrf.android_base_app.features.beer_master_detail.services.BeerDeserializer
-import com.isaacrf.android_base_app.helpers.MockBeersHelper
 import com.isaacrf.android_base_app.shared.helpers.NetworkResource
 import com.isaacrf.android_base_app.shared.helpers.Status
 import org.junit.Assert.*
@@ -20,8 +17,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
-import java.io.BufferedReader
-import java.io.FileReader
 
 
 /**
@@ -68,6 +63,9 @@ class BeerListViewModelTest: MockBeersHelper() {
         `when`(beerListRepository.getBeers()).thenReturn(mockData)
         beerListViewModel = BeerListViewModel(beerListRepository, state)
         beerListViewModel.getBeers().observeForever(observer)
+
+        //TODO: TEST DB
+        //val test = BeerDao.load(1)
 
         verify(observer).onChanged(mockData.value)
         assertNotNull("beerList LiveData is null", beerListViewModel.getBeers())

@@ -28,11 +28,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_beerlist"
-            android:name="com.isaacrf.android_base_app.ItemListFragment"
+            android:name="com.isaacrf.android_mvvm_beercatalog.ItemListFragment"
             android:layout_width="@dimen/item_width"
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"
-            tools:context="com.isaacrf.android_base_app.shared.ui.MainActivity"
+            tools:context="com.isaacrf.android_mvvm_beercatalog.shared.ui.MainActivity"
             tools:listitem="@layout/beer_list_item_view" />
 
         <TextView

@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "com.isaacrf.android_base_app"
+        applicationId "com.isaacrf.android_mvvm_beercatalog"
         minSdkVersion 20
         targetSdkVersion 29
         versionCode 1

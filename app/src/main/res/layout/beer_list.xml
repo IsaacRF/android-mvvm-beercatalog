@@ -10,7 +10,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_beerlist"
-        android:name="com.isaacrf.android_base_app.ItemListFragment"
+        android:name="com.isaacrf.android_mvvm_beercatalog.ItemListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="LinearLayoutManager"

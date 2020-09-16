@@ -6,7 +6,7 @@
     app:startDestination="@id/beerListFragment">
     <fragment
         android:id="@+id/beerListFragment"
-        android:name="com.isaacrf.android_base_app.features.beer_master_detail.ui.BeerListFragment"
+        android:name="com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.ui.BeerListFragment"
         android:label="BeerListFragment"
         tools:layout="@layout/beer_list">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/beerDetailFragment"
-        android:name="com.isaacrf.android_base_app.features.beer_master_detail.ui.BeerDetailFragment"
+        android:name="com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.ui.BeerDetailFragment"
         android:label="beer_detail"
         tools:layout="@layout/beer_detail">
 

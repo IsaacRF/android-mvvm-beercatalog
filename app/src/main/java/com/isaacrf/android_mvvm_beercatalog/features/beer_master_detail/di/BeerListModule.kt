@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerRoomDatabase
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerDao
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerDatabase
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
@@ -77,13 +78,13 @@ object BeerListModule {
     }
 
     /**
-     * Provides instantiation for Room Database
+     * Provides instantiation for BeerRoomDatabase
      */
     @Singleton
     @Provides
     fun provideDb(app: Application): BeerDatabase {
         return Room
-            .databaseBuilder(app, BeerDatabase::class.java, "beer.db")
+            .databaseBuilder(app, BeerRoomDatabase::class.java, "beer.db")
             .fallbackToDestructiveMigration()
             .build()
     }

@@ -65,7 +65,7 @@ class BeerListViewModelTest: MockBeersHelper() {
         beerListViewModel.getBeers().observeForever(observer)
 
         //TODO: TEST DB
-        //val test = BeerDao.load(1)
+        //val test = BeerRoomDao.load(1)
 
         verify(observer).onChanged(mockData.value)
         assertNotNull("beerList LiveData is null", beerListViewModel.getBeers())

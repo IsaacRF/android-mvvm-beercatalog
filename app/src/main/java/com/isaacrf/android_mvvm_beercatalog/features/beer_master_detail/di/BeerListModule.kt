@@ -10,6 +10,7 @@ import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerD
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerDeserializer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerListService
+import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.iBeerListService
 import com.isaacrf.android_mvvm_beercatalog.shared.helpers.RetrofitLiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -71,7 +72,7 @@ object BeerListModule {
      */
     @Provides
     @Singleton
-    fun provideBeerListService(): BeerListService {
+    fun provideBeerListService(): iBeerListService {
         val gson = getGson()
         val okHttpClient = getOkHttpClient()
         val retrofit = getRetrofit("https://api.punkapi.com/v2/", okHttpClient, gson)

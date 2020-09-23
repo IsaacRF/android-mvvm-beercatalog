@@ -7,6 +7,7 @@ import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerD
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerDatabase
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerListService
+import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.iBeerListService
 import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkBoundResource
 import com.isaacrf.android_mvvm_beercatalog.shared.helpers.AppExecutors
 import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkResource
@@ -22,7 +23,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class BeerListRepository @Inject constructor(
-    private val beerListService: BeerListService,
+    private val beerListService: iBeerListService,
     private val beerDatabase: BeerDatabase,
     private val beerDao: BeerDao,
     private val appExecutors: AppExecutors

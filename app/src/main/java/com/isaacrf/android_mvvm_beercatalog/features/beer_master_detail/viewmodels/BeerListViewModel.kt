@@ -5,7 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.repositories.BeerListRepository
-import com.isaacrf.android_mvvm_beercatalog.shared.helpers.NetworkResource
+import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkResource
 
 class BeerListViewModel @ViewModelInject constructor(
     private val beerListRepository: BeerListRepository,

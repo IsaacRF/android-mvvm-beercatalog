@@ -10,6 +10,7 @@ import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerD
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerDeserializer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerListService
+import com.isaacrf.android_mvvm_beercatalog.shared.helpers.RetrofitLiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -61,6 +62,7 @@ object BeerListModule {
             .client(okHttpClient)
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RetrofitLiveDataCallAdapterFactory())
             .build()
     }
 

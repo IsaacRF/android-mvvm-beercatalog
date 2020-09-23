@@ -7,8 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.repositories.BeerListRepository
-import com.isaacrf.android_mvvm_beercatalog.shared.helpers.NetworkResource
-import com.isaacrf.android_mvvm_beercatalog.shared.helpers.Status
+import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkResource
+import com.isaacrf.android_mvvm_beercatalog.shared.api.Status
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -58,7 +58,13 @@ class BeerListViewModelTest: MockBeersHelper() {
     fun `Get Beers Test - Success`() {
         val mockBeers = getMockBeers()
         val mockData: MutableLiveData<NetworkResource<List<Beer>>> =
-            MutableLiveData(NetworkResource(Status.SUCCESS, mockBeers, ""))
+            MutableLiveData(
+                NetworkResource(
+                    Status.SUCCESS,
+                    mockBeers,
+                    ""
+                )
+            )
 
         `when`(beerListRepository.getBeers()).thenReturn(mockData)
         beerListViewModel = BeerListViewModel(beerListRepository, state)
@@ -84,7 +90,11 @@ class BeerListViewModelTest: MockBeersHelper() {
         val mockBeers: List<Beer>? = null
         val mockData: MutableLiveData<NetworkResource<List<Beer>>> =
             MutableLiveData<NetworkResource<List<Beer>>>(
-                NetworkResource(Status.ERROR, mockBeers, "Test failure")
+                NetworkResource(
+                    Status.ERROR,
+                    mockBeers,
+                    "Test failure"
+                )
             )
 
         `when`(beerListRepository.getBeers()).thenReturn(mockData)
@@ -99,7 +109,13 @@ class BeerListViewModelTest: MockBeersHelper() {
     fun `Update Availability Test`() {
         val mockBeers = getMockBeers()
         val mockData: MutableLiveData<NetworkResource<List<Beer>>> =
-            MutableLiveData(NetworkResource(Status.SUCCESS, mockBeers, ""))
+            MutableLiveData(
+                NetworkResource(
+                    Status.SUCCESS,
+                    mockBeers,
+                    ""
+                )
+            )
 
         `when`(beerListRepository.getBeers()).thenReturn(mockData)
         beerListViewModel = BeerListViewModel(beerListRepository, state)

@@ -7,8 +7,9 @@ import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerD
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerDatabase
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerListService
+import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkBoundResource
 import com.isaacrf.android_mvvm_beercatalog.shared.helpers.AppExecutors
-import com.isaacrf.android_mvvm_beercatalog.shared.helpers.NetworkResource
+import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,26 +31,18 @@ class BeerListRepository @Inject constructor(
      * GET all beers
      */
     fun getBeers(): MutableLiveData<NetworkResource<List<Beer>>> {
-        val data = MutableLiveData<NetworkResource<List<Beer>>>()
-        data.value = NetworkResource.loading(null)
-        beerListService.getBeers(1, 80).enqueue(object : Callback<List<Beer>> {
-            override fun onResponse(call: Call<List<Beer>>, response: Response<List<Beer>>) {
-                appExecutors.diskIO().execute {
-                    beerDao.insert(response.body()!!)
-                    val beers = beerDao.load()
-
-                    appExecutors.mainThread().execute {
-                        data.value = NetworkResource.success(beers)
-                    }
-                }
+        return object : NetworkBoundResource<List<Beer>, List<Beer>>(appExecutors) {
+            override fun saveCallResult(result: List<Beer>) {
+                beerDao.insert(result)
             }
 
-            override fun onFailure(call: Call<List<Beer>>, t: Throwable) {
-                Log.d("BeerListRepository", "getBeers() - Failure")
-                data.value = NetworkResource.error(t.message!!, null)
-            }
-        })
-        return data
+            //Always fetch from network by default for this example purposes
+            override fun shouldFetch(data: List<Beer>?): Boolean = true
+
+            override fun loadFromDb() = beerDao.load()
+
+            override fun apiCall() = beerListService.getBeers(1, 80)
+        }.asMutableLiveData()
     }
 
     /**

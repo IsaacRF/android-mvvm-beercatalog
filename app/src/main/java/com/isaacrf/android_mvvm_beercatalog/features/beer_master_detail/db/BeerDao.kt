@@ -1,5 +1,6 @@
 package com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db
 
+import androidx.lifecycle.LiveData
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 
 /**
@@ -10,5 +11,5 @@ interface BeerDao {
     fun insert(beers: List<Beer>)
     fun update(beer: Beer)
     fun load(beerId: Int): Beer?
-    fun load(): List<Beer>?
+    fun load(): LiveData<List<Beer>>
 }

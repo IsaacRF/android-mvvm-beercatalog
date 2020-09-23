@@ -1,4 +1,4 @@
-package com.isaacrf.android_mvvm_beercatalog.shared.helpers
+package com.isaacrf.android_mvvm_beercatalog.shared.api
 
 /**
  * Status of a resource that is provided to the UI.
@@ -14,7 +14,7 @@ enum class Status {
 
 /**
  * A generic class that holds a value with its loading status.
- * @param <T>
+ * @param <T> Response value type
 </T> */
 data class NetworkResource<out T>(val status: Status, val data: T?, val message: String?) {
     companion object {

@@ -1,5 +1,6 @@
 package com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.*
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
@@ -22,5 +23,5 @@ abstract class BeerRoomDao: BeerDao {
     abstract override fun load(beerId: Int): Beer?
 
     @Query("SELECT * FROM Beer")
-    abstract override fun load(): List<Beer>?
+    abstract override fun load(): LiveData<List<Beer>>
 }

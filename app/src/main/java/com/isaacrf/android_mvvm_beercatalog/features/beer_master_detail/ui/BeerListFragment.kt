@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.isaacrf.android_mvvm_beercatalog.R
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.viewmodels.BeerListViewModel
-import com.isaacrf.android_mvvm_beercatalog.shared.helpers.Status
+import com.isaacrf.android_mvvm_beercatalog.shared.api.Status
 import com.isaacrf.android_mvvm_beercatalog.shared.ui.MainActivity
 import kotlinx.android.synthetic.main.beer_list.*
 

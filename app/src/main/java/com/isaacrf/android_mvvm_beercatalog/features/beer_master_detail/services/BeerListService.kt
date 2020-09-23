@@ -3,19 +3,13 @@ package com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.service
 import androidx.lifecycle.LiveData
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.shared.api.ApiResponse
-import retrofit2.http.GET
-import retrofit2.http.Query
 
 /**
- * Retrofit beer service implementation
+ * Service representation to handle http calls to beers backend
  */
-interface BeerListService: iBeerListService {
+interface BeerListService {
     /**
      * @GET Method. Retrieves all beers
      */
-    @GET("beers")
-    override fun getBeers(
-        @Query("page") page: Int,
-        @Query("per_page") perPage: Int
-    ): LiveData<ApiResponse<List<Beer>>>
+    fun getBeers(page: Int, perPage: Int): LiveData<ApiResponse<List<Beer>>>
 }

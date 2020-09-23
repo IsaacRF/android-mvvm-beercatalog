@@ -9,8 +9,8 @@ import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerD
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerDatabase
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerDeserializer
+import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerListRetrofitService
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerListService
-import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.iBeerListService
 import com.isaacrf.android_mvvm_beercatalog.shared.helpers.RetrofitLiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -68,20 +68,20 @@ object BeerListModule {
     }
 
     /**
-     * Provides instantiation for http client interface
+     * Provides instantiation for API client interface
      */
     @Provides
     @Singleton
-    fun provideBeerListService(): iBeerListService {
+    fun provideBeerListService(): BeerListService {
         val gson = getGson()
         val okHttpClient = getOkHttpClient()
         val retrofit = getRetrofit("https://api.punkapi.com/v2/", okHttpClient, gson)
 
-        return retrofit.create(BeerListService::class.java)
+        return retrofit.create(BeerListRetrofitService::class.java)
     }
 
     /**
-     * Provides instantiation for BeerRoomDatabase
+     * Provides instantiation for BeerDatabase interface
      */
     @Singleton
     @Provides
@@ -93,7 +93,7 @@ object BeerListModule {
     }
 
     /**
-     * Provides instantiation for BeerDao
+     * Provides instantiation for BeerDao interface
      */
     @Singleton
     @Provides

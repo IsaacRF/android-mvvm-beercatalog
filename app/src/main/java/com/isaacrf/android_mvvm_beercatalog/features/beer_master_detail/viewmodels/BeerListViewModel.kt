@@ -11,31 +11,30 @@ class BeerListViewModel @ViewModelInject constructor(
     private val beerListRepository: BeerListRepository,
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
+
     //Observable data list
-    private val beers: MutableLiveData<NetworkResource<List<Beer>>> by lazy {
+    private val _beers: MutableLiveData<NetworkResource<List<Beer>>> by lazy {
         loadBeers()
     }
+    val beers: LiveData<NetworkResource<List<Beer>>>
+        get() = _beers
 
     private fun loadBeers(): MutableLiveData<NetworkResource<List<Beer>>> {
         return beerListRepository.getBeers()
     }
 
-    fun getBeers(): LiveData<NetworkResource<List<Beer>>> {
-        return beers
-    }
-
     fun getBeer(beerId: Int?): Beer? {
-        return beers.value?.data?.find { beer -> beer.id == beerId }
+        return _beers.value?.data?.find { beer -> beer.id == beerId }
     }
 
     fun changeAvailability(beerId: Int): LiveData<Beer> {
-        val beer = beers.value?.data?.find { beer -> beer.id == beerId }
+        val beer = _beers.value?.data?.find { beer -> beer.id == beerId }
         beer?.available = !beer?.available!!
         refreshData()
         return beerListRepository.updateBeer(beer)
     }
 
     fun refreshData() {
-        beers.value = beers.value
+        _beers.value = _beers.value
     }
 }

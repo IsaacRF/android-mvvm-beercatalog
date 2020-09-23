@@ -42,7 +42,7 @@ class BeerDetailFragment : Fragment() {
             if (it.containsKey(ARG_ITEM_ID)) {
                 val beerId = it.getString(ARG_ITEM_ID)?.toInt()
 
-                beerDetailViewModel.getBeer().observe(this) { beer ->
+                beerDetailViewModel.beer.observe(this) { beer ->
                     updateUI(beer)
                 }
 
@@ -60,7 +60,7 @@ class BeerDetailFragment : Fragment() {
         rootView.findViewById<FloatingActionButton>(R.id.button_beerdetail_changeavailability)
             .setOnClickListener {
                 beerListViewModel
-                    .changeAvailability(beerDetailViewModel.getBeer().value?.id!!)
+                    .changeAvailability(beerDetailViewModel.beer.value?.id!!)
                     .observe(viewLifecycleOwner) {beer ->
                         beerDetailViewModel.setBeer(beer)
                     }

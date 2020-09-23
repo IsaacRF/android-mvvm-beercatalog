@@ -1,29 +1,23 @@
 package com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerDao
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.db.BeerDatabase
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.BeerListService
-import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services.iBeerListService
 import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkBoundResource
 import com.isaacrf.android_mvvm_beercatalog.shared.helpers.AppExecutors
 import com.isaacrf.android_mvvm_beercatalog.shared.api.NetworkResource
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 /**
- * Layer to abstract data access to beers
+ * Data management abstraction layer for beers
  */
 @Singleton
 class BeerListRepository @Inject constructor(
-    private val beerListService: iBeerListService,
+    private val beerListService: BeerListService,
     private val beerDatabase: BeerDatabase,
     private val beerDao: BeerDao,
     private val appExecutors: AppExecutors

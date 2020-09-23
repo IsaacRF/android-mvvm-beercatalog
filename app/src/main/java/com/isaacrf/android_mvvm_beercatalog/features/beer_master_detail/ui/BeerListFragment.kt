@@ -40,7 +40,7 @@ class BeerListFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         //Observe live data changes and update UI accordingly
-        beerListViewModel.getBeers().observe(this) {
+        beerListViewModel.beers.observe(this) {
             when (it.status) {
                 Status.LOADING -> {
                     Log.d("GET BEERS", "LOADING...")

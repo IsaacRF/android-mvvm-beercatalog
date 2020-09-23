@@ -11,20 +11,18 @@ import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.B
 class BeerDetailViewModel @ViewModelInject constructor(
     @Assisted private val state: SavedStateHandle
 ): ViewModel() {
-    private val beer: MutableLiveData<Beer> by lazy {
+    private val _beer: MutableLiveData<Beer> by lazy {
         MutableLiveData<Beer>()
     }
-
-    fun getBeer(): LiveData<Beer> {
-        return beer
-    }
+    val beer: LiveData<Beer>
+        get() = _beer
 
     fun setBeer(beer: Beer?) {
-        this.beer.value = beer
+        this._beer.value = beer
     }
 
     fun changeAvailability() {
-        this.beer.value?.available = !this.beer.value?.available!!
-        this.beer.value = this.beer.value
+        this._beer.value?.available = !this._beer.value?.available!!
+        this._beer.value = this._beer.value
     }
 }

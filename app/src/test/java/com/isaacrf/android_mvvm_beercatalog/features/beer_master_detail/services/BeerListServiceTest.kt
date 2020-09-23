@@ -25,7 +25,7 @@ class BeerListServiceTest {
     val instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
     private lateinit var mockWebServer: MockWebServer
     private lateinit var gson: Gson
-    private lateinit var beerListService: BeerListService
+    private lateinit var beerListService: BeerListRetrofitService
 
     @Before
     @Throws(Exception::class)
@@ -40,7 +40,7 @@ class BeerListServiceTest {
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(BeerListService::class.java)
+            .create(BeerListRetrofitService::class.java)
     }
 
     @Test

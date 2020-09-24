@@ -1,5 +1,6 @@
 # Android Developer Challenge
 **Company**: nc43|tech
+
 **Maximum amount of time allowed**: 5 days.
 
 ## Task

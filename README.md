@@ -6,7 +6,7 @@
 
 **Target SDK**: API 29
 
-Android MVVM, master-detail app built in modern architecture, that shows a beer catalog and allows user to interact with it changing beer availability. This development is part of a code challenge which requisites you can read [here](https://github.com/IsaacRF/android-mvvm-beercatalog/blob/master/ASSESSMENT.md)
+Android MVVM, master-detail app built in modern architecture using SOLID and CLEAN principles, that shows a beer catalog and allows user to interact with it changing beer availability. This development is part of a code challenge which requisites you can read [here](https://github.com/IsaacRF/android-mvvm-beercatalog/blob/master/ASSESSMENT.md)
 
 ![beercatalog_tablet_demo](https://user-images.githubusercontent.com/2803925/90969086-a3d4b200-e4f4-11ea-8597-3663dc08fb7a.gif)
 ![beercatalog_phone_demo](https://user-images.githubusercontent.com/2803925/90969087-a46d4880-e4f4-11ea-9cde-a14af8307d2e.gif)

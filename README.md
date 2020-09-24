@@ -12,6 +12,11 @@ Android MVVM, master-detail app built in modern architecture using SOLID and CLE
 ![beercatalog_phone_demo](https://user-images.githubusercontent.com/2803925/90969087-a46d4880-e4f4-11ea-9cde-a14af8307d2e.gif)
 
 ## Main Features
+- 📱 [Adaptable layout](https://github.com/IsaacRF/android-mvvm-beercatalog#adaptable-layout) for Tablets and Phones of any size
+- 🏗 [Architecture](https://github.com/IsaacRF/android-mvvm-beercatalog#mvvm-architecture) SOLID and CLEAN compliant, under MVVM pattern
+- 📦 [Full API and BBDD consumption abstraction](https://github.com/IsaacRF/android-mvvm-beercatalog#data)
+- 💉 [Dependency Inversion and Injection](https://github.com/IsaacRF/android-mvvm-beercatalog#dependency-inversion-and-injection)
+- 📸 [Image rendering and auto caching](https://github.com/IsaacRF/android-mvvm-beercatalog#image-rendering-and-caching)
 
 ### Adaptable layout
 App is displayed in two pane mode on tablets, and master-detail navigation in phones, making the most of screen space. Navigation is made via Android's [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) using [NavGraph](https://developer.android.com/guide/navigation/navigation-getting-started#create-nav-graph) alongside two fragments (one for master and another one for detail). Fragments allow to easily configure layout distribution and navigation depending on screen size, and NavGraph allows to configure navigation transitions and required info in one place.
@@ -91,12 +96,11 @@ class BeerListViewModel @ViewModelInject constructor (
 ) : ViewModel() {}
 ```
 
-### API Calls
-API Calls are handled via [retrofit](https://square.github.io/retrofit/), declaring calls via an interface, and automatically deserialized by [Gson](https://github.com/google/gson) into model objects.
+### Data
+## API Calls
+API Calls are handled via [retrofit](https://square.github.io/retrofit/), declaring calls via an interface, and automatically deserialized by [Gson](https://github.com/google/gson) into model objects. This app manages to achieve retrofit abstraction using interfaces and call adapter factories.
 
 [PUNK API endpoint](https://github.com/IsaacRF/android-mvvm-beercatalog/blob/master/ASSESSMENT.md)
-
-This app manages to achieve retrofit abstraction using interfaces and call adapter factories.
 
 ***BeerListService***
 ```Kotlin
@@ -104,7 +108,40 @@ This app manages to achieve retrofit abstraction using interfaces and call adapt
 fun getBeers(
     @Query("page") page: Int,
     @Query("per_page") perPage: Int
-): Call<List<Beer>>
+): LiveData<ApiResponse<List<Beer>>>
+```
+
+## Local Storage
+Cache and local storage is managed via [Room](https://developer.android.com/topic/libraries/architecture/room), using data classes as entities, and dao interfaces for DDBB access.
+
+***Data class***
+```Kotlin
+@Entity
+data class Beer (
+    @PrimaryKey
+    val id: Int, ...
+)
+```
+
+***DAO***
+```Kotlin
+@Dao
+abstract class BeerRoomDao: BeerDao {
+    @Insert(onConflict = ABORT)
+    abstract override fun insert(vararg beers: Beer)
+
+    @Insert(onConflict = IGNORE)
+    abstract override fun insert(beers: List<Beer>)
+
+    @Update
+    abstract override fun update(beer: Beer)
+
+    @Query("SELECT * FROM Beer WHERE id = :beerId")
+    abstract override fun load(beerId: Int): Beer?
+
+    @Query("SELECT * FROM Beer")
+    abstract override fun load(): LiveData<List<Beer>>
+}
 ```
 
 ### Image rendering and caching

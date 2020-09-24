@@ -33,23 +33,23 @@ class BeerDetailViewModelTest: MockBeersHelper() {
         MockitoAnnotations.initMocks(this)
 
         beerDetailViewModel = BeerDetailViewModel(state)
-        beerDetailViewModel.getBeer().observeForever(observer)
+        beerDetailViewModel.beer.observeForever(observer)
         beerDetailViewModel.setBeer(mockBeers.get(0))
     }
 
     @Test
     fun `Test Beer not Null and observer attached`() {
-        Assert.assertNotNull("beer LiveData is null", beerDetailViewModel.getBeer())
+        Assert.assertNotNull("beer LiveData is null", beerDetailViewModel.beer)
         Assert.assertTrue(
             "beer has no observer attached",
-            beerDetailViewModel.getBeer().hasObservers()
+            beerDetailViewModel.beer.hasObservers()
         )
     }
 
     @Test
     fun `Update Beer Availability Test`() {
-        assertTrue(beerDetailViewModel.getBeer().value?.available!!)
+        assertTrue(beerDetailViewModel.beer.value?.available!!)
         beerDetailViewModel.changeAvailability()
-        assertTrue(!beerDetailViewModel.getBeer().value?.available!!)
+        assertTrue(!beerDetailViewModel.beer.value?.available!!)
     }
 }

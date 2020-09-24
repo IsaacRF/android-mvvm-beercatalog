@@ -49,9 +49,9 @@ class BeerListViewModelTest: MockBeersHelper() {
     fun `Test Beer List not Null and observer attached`() {
         `when`(beerListRepository.getBeers()).thenReturn(MutableLiveData<NetworkResource<List<Beer>>>())
         beerListViewModel = BeerListViewModel(beerListRepository, state)
-        beerListViewModel.getBeers().observeForever(observer)
-        assertNotNull("beerList LiveData is null", beerListViewModel.getBeers())
-        assertTrue("beerList has no observer attached", beerListViewModel.getBeers().hasObservers())
+        beerListViewModel.beers.observeForever(observer)
+        assertNotNull("beerList LiveData is null", beerListViewModel.beers)
+        assertTrue("beerList has no observer attached", beerListViewModel.beers.hasObservers())
     }
 
     @Test
@@ -68,20 +68,20 @@ class BeerListViewModelTest: MockBeersHelper() {
 
         `when`(beerListRepository.getBeers()).thenReturn(mockData)
         beerListViewModel = BeerListViewModel(beerListRepository, state)
-        beerListViewModel.getBeers().observeForever(observer)
+        beerListViewModel.beers.observeForever(observer)
 
         //TODO: TEST DB
         //val test = BeerRoomDao.load(1)
 
         verify(observer).onChanged(mockData.value)
-        assertNotNull("beerList LiveData is null", beerListViewModel.getBeers())
-        assertNotNull("beerList value is null", beerListViewModel.getBeers().value)
+        assertNotNull("beerList LiveData is null", beerListViewModel.beers)
+        assertNotNull("beerList value is null", beerListViewModel.beers.value)
         assertTrue(
-            "beerList value has incorrect size. Expected: 20 / Got: ${beerListViewModel.getBeers().value?.data?.size}",
-            beerListViewModel.getBeers().value?.data?.size == 20
+            "beerList value has incorrect size. Expected: 20 / Got: ${beerListViewModel.beers.value?.data?.size}",
+            beerListViewModel.beers.value?.data?.size == 20
         )
-        assertTrue(beerListViewModel.getBeers().value?.data?.get(0)?.name == "Buzz")
-        assertTrue(beerListViewModel.getBeers().value?.data?.get(1)?.name == "Trashy Blonde")
+        assertTrue(beerListViewModel.beers.value?.data?.get(0)?.name == "Buzz")
+        assertTrue(beerListViewModel.beers.value?.data?.get(1)?.name == "Trashy Blonde")
     }
 
     @Test
@@ -99,10 +99,10 @@ class BeerListViewModelTest: MockBeersHelper() {
 
         `when`(beerListRepository.getBeers()).thenReturn(mockData)
         beerListViewModel = BeerListViewModel(beerListRepository, state)
-        beerListViewModel.getBeers().observeForever(observer)
+        beerListViewModel.beers.observeForever(observer)
 
         verify(observer).onChanged(mockData.value)
-        assertNull(beerListViewModel.getBeers().value?.data)
+        assertNull(beerListViewModel.beers.value?.data)
     }
 
     @Test
@@ -119,12 +119,12 @@ class BeerListViewModelTest: MockBeersHelper() {
 
         `when`(beerListRepository.getBeers()).thenReturn(mockData)
         beerListViewModel = BeerListViewModel(beerListRepository, state)
-        beerListViewModel.getBeers().observeForever(observer)
+        beerListViewModel.beers.observeForever(observer)
 
         beerListViewModel.changeAvailability(1)
-        assertTrue(!beerListViewModel.getBeers().value?.data?.find { beer -> beer.id == 1 }!!.available)
+        assertTrue(!beerListViewModel.beers.value?.data?.find { beer -> beer.id == 1 }!!.available)
 
         beerListViewModel.changeAvailability(1)
-        assertTrue(beerListViewModel.getBeers().value?.data?.find { beer -> beer.id == 1 }!!.available)
+        assertTrue(beerListViewModel.beers.value?.data?.find { beer -> beer.id == 1 }!!.available)
     }
 }

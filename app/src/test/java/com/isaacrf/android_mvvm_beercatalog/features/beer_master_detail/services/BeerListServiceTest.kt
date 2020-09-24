@@ -1,8 +1,11 @@
 package com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.services
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.isaacrf.android_mvvm_beercatalog.helpers.getOrAwaitValue
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.isaacrf.android_mvvm_beercatalog.shared.api.ApiSuccessResponse
+import com.isaacrf.android_mvvm_beercatalog.shared.helpers.RetrofitLiveDataCallAdapterFactory
 import junit.framework.Assert.*
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -39,40 +42,40 @@ class BeerListServiceTest {
         beerListService = Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RetrofitLiveDataCallAdapterFactory())
             .build()
             .create(BeerListRetrofitService::class.java)
+    }
+
+    @After
+    fun tearDown() {
+        mockWebServer.shutdown()
     }
 
     @Test
     fun `getBeers() - Call Success`() {
         enqueueResponse("BeersResponseSample.json")
 
-        val response = beerListService.getBeers(1, 20).execute()
-
+        val response = (beerListService.getBeers(1, 20).getOrAwaitValue() as ApiSuccessResponse)
         val request = mockWebServer.takeRequest()
         assertThat(request.path, `is`("/beers?page=1&per_page=20"))
-        assertTrue(response.body()?.size == 20)
+        assertTrue(response.body.size == 20)
 
-        val beer = response.body()?.get(0)
+        val beer = response.body[0]
         assertNotNull(beer)
-        assertThat(beer?.id, `is`(1))
-        assertThat(beer?.name, `is`("Buzz"))
-        assertThat(beer?.tagline, `is`("A Real Bitter Experience."))
-        assertThat(beer?.description, `is`("A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once."))
-        assertThat(beer?.alcoholByVolume, `is`(4.5))
-        assertTrue(beer?.foodPairing?.size == 3)
-        assertThat(beer?.bitterness, `is`(60.0))
-        assertThat(beer?.imageUrl, `is`("https://images.punkapi.com/v2/keg.png"))
+        assertThat(beer.id, `is`(1))
+        assertThat(beer.name, `is`("Buzz"))
+        assertThat(beer.tagline, `is`("A Real Bitter Experience."))
+        assertThat(beer.description, `is`("A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once."))
+        assertThat(beer.alcoholByVolume, `is`(4.5))
+        assertTrue(beer.foodPairing?.size == 3)
+        assertThat(beer.bitterness, `is`(60.0))
+        assertThat(beer.imageUrl, `is`("https://images.punkapi.com/v2/keg.png"))
 
-        val beer2 = response.body()?.get(1)
+        val beer2 = response.body[1]
         assertNotNull(beer2)
-        assertThat(beer2?.id, `is`(2))
-        assertThat(beer2?.name, `is`("Trashy Blonde"))
-    }
-
-    @After
-    fun tearDown() {
-        mockWebServer.shutdown()
+        assertThat(beer2.id, `is`(2))
+        assertThat(beer2.name, `is`("Trashy Blonde"))
     }
 
     /**

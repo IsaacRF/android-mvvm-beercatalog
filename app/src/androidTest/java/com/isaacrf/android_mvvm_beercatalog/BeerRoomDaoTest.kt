@@ -50,24 +50,24 @@ class BeerRoomDaoTest : MockBeersHelper() {
 
         beerRoomDao.insert(beers)
 
-        //Insert and retrieve tests
+        //Insert and retrieve test beers
         val retrievedBeers = beerRoomDao.load()
         assertNotNull(retrievedBeers)
         assertThat(
-            "Wrong retrieved beer list size. Expected 20. Got ${retrievedBeers?.size}",
-            retrievedBeers?.size,
+            "Wrong retrieved beer list size. Expected 20. Got ${retrievedBeers.value?.size}",
+            retrievedBeers.value?.size,
             `is`(20)
         )
         assertThat(
-            "First beer wrong name. Expected Buzz. Got ${retrievedBeers?.get(0)?.name}",
-            retrievedBeers?.get(0)?.name,
+            "First beer wrong name. Expected Buzz. Got ${retrievedBeers.value?.get(0)?.name}",
+            retrievedBeers.value?.get(0)?.name,
             `is`("Buzz")
         )
 
         //Update tests
         assertTrue(
-            "Beer availability error. Expected true. Got ${retrievedBeers?.get(0)?.available}",
-            retrievedBeers?.get(0)?.available!!
+            "Beer availability error. Expected true. Got ${retrievedBeers.value?.get(0)?.available}",
+            retrievedBeers.value?.get(0)?.available!!
         )
         val beerToUpdate = beers[0]
         beerToUpdate.available = false

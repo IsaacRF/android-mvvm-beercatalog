@@ -6,7 +6,7 @@
 
 **Target SDK**: API 29
 
-Android MVVM app built in modern architecture, that shows a beer catalog and allows user to interact with it changing beer availability.
+Android MVVM, master-detail app built in modern architecture, that shows a beer catalog and allows user to interact with it changing beer availability. This development is part of a code challenge which requisites you can read [here](https://github.com/IsaacRF/android-mvvm-beercatalog/blob/master/ASSESSMENT.md)
 
 ![beercatalog_tablet_demo](https://user-images.githubusercontent.com/2803925/90969086-a3d4b200-e4f4-11ea-8597-3663dc08fb7a.gif)
 ![beercatalog_phone_demo](https://user-images.githubusercontent.com/2803925/90969087-a46d4880-e4f4-11ea-9cde-a14af8307d2e.gif)
@@ -57,8 +57,8 @@ beerListViewModel.beerList.observe(this) {
 }
 ```
 
-#### Dependency Injection
-Project implements Dependency Injection (SOLI**D**) to isolate modules, avoid inter-dependencies and make testing easier
+#### Dependency Inversion and Injection
+Project implements Dependency Inversion (SOLI**D**) and Injection to isolate modules, avoid inter-dependencies and make testing easier
 
 Dependency Injection is handled via [Hilt](https://developer.android.com/training/dependency-injection/hilt-android), a library that uses Dagger under the hood easing its implementation via @ annotations, and is developed and recommended to use by Google.
 
@@ -93,6 +93,10 @@ class BeerListViewModel @ViewModelInject constructor (
 
 ### API Calls
 API Calls are handled via [retrofit](https://square.github.io/retrofit/), declaring calls via an interface, and automatically deserialized by [Gson](https://github.com/google/gson) into model objects.
+
+[PUNK API endpoint](https://github.com/IsaacRF/android-mvvm-beercatalog/blob/master/ASSESSMENT.md)
+
+This app manages to achieve retrofit abstraction using interfaces and call adapter factories.
 
 ***BeerListService***
 ```Kotlin

@@ -34,7 +34,7 @@ class BeerListViewModel @ViewModelInject constructor(
         return beerListRepository.updateBeer(beer)
     }
 
-    fun refreshData() {
+    private fun refreshData() {
         _beers.value = _beers.value
     }
 }

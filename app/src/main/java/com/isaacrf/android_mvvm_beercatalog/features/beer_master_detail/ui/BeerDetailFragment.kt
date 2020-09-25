@@ -3,15 +3,11 @@ package com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.isaacrf.android_mvvm_beercatalog.R
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.models.Beer
 import com.isaacrf.android_mvvm_beercatalog.features.beer_master_detail.viewmodels.BeerDetailViewModel
@@ -26,7 +22,7 @@ import kotlinx.android.synthetic.main.beer_detail.*
  * in two-pane mode (on tablets) or as [BeerDetailFragment] by itself
  * via navigation on handsets.
  */
-class BeerDetailFragment : Fragment() {
+class BeerDetailFragment : Fragment(R.layout.beer_detail) {
 
     /**
      * ViewModel controls business logic and data representation. A saved state factory is created
@@ -51,29 +47,23 @@ class BeerDetailFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.beer_detail, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        rootView.findViewById<FloatingActionButton>(R.id.button_beerdetail_changeavailability)
-            .setOnClickListener {
-                beerListViewModel
-                    .changeAvailability(beerDetailViewModel.beer.value?.id!!)
-                    .observe(viewLifecycleOwner) {beer ->
-                        beerDetailViewModel.setBeer(beer)
-                    }
-            }
-
-        return rootView
+        button_beerdetail_changeavailability.setOnClickListener {
+            beerListViewModel
+                .changeAvailability(beerDetailViewModel.beer.value?.id!!)
+                .observe(viewLifecycleOwner) { beer ->
+                    beerDetailViewModel.setBeer(beer)
+                }
+        }
     }
 
     /**
      * Updates UI info including toolbar title
      */
     private fun updateUI(beer: Beer) {
-        activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = beer.name
+        activity?.toolbar_layout?.title = beer.name
 
         EpicBitmapRenderer.decodeBitmapFromUrl(beer.imageUrl,
             image_beer.width,

@@ -18,6 +18,14 @@ Android MVVM, master-detail app built in modern architecture using SOLID and CLE
 - 💉 [Dependency Inversion and Injection](https://github.com/IsaacRF/android-mvvm-beercatalog#dependency-inversion-and-injection)
 - 📸 [Image rendering and auto caching](https://github.com/IsaacRF/android-mvvm-beercatalog#image-rendering-and-caching)
 
+**Techs**
+- <img src="https://4.bp.blogspot.com/-NnAkV5vpYuw/XNMYF4RtLvI/AAAAAAAAI70/kdgLm3cnTO4FB4rUC0v9smscN3zHJPlLgCLcBGAs/s1600/Jetpack_logo%2B%25282%2529.png" width="30px"> Android Jetpack
+    - Navigation components (Navgraph)
+    - Room 
+- 🗡 Hilt
+- <img src="https://square.github.io/images/logo.png" style="background-color: black" width="30px"> Retrofit
+
+
 ### Adaptable layout
 App is displayed in two pane mode on tablets, and master-detail navigation in phones, making the most of screen space. Navigation is made via Android's [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) using [NavGraph](https://developer.android.com/guide/navigation/navigation-getting-started#create-nav-graph) alongside two fragments (one for master and another one for detail). Fragments allow to easily configure layout distribution and navigation depending on screen size, and NavGraph allows to configure navigation transitions and required info in one place.
 

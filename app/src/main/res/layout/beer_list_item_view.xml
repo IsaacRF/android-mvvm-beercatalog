@@ -1,70 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_beerlist_parent"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeightLarge"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="?attr/selectableItemBackground"
+    android:padding="6dip"
+    tools:ignore="UselessParent">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="?android:attr/listPreferredItemHeightLarge"
-        android:padding="6dip"
-        tools:ignore="UselessParent">
+    <ImageView
+        android:id="@+id/image_beer"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dip"
+        android:layout_marginTop="6dip"
+        android:layout_marginRight="16dip"
+        android:layout_marginBottom="6dip"
+        android:contentDescription="@string/placeholder_beer_image"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/image_beer"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="16dip"
-            android:layout_marginTop="6dip"
-            android:layout_marginRight="16dip"
-            android:layout_marginBottom="6dip"
-            android:contentDescription="@string/placeholder_beer_image"
-            android:src="@mipmap/ic_launcher_round" />
+    <TextView
+        android:id="@+id/text_beerlist_alcoholbyvolume"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dip"
+        android:layout_marginTop="6dip"
+        android:layout_marginRight="6dip"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:text="@string/placeholder_beer_abv"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_beer" />
 
-        <TextView
-            android:id="@+id/text_beerlist_alcoholbyvolume"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_beer"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="6dip"
-            android:layout_marginRight="6dip"
-            android:ellipsize="marquee"
-            android:gravity="center"
-            android:text="@string/placeholder_beer_abv"
-            android:textAlignment="center"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/text_beerlist_tagline"
+        android:layout_width="0dip"
+        android:layout_height="26dip"
+        android:layout_marginLeft="16dip"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="@string/placeholder_beer_tagline"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_beer"
+        app:layout_constraintTop_toBottomOf="@id/text_beerlist_beername" />
 
-        <TextView
-            android:id="@+id/text_beerlist_tagline"
-            android:layout_width="fill_parent"
-            android:layout_height="26dip"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@id/image_beer"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="@string/placeholder_beer_tagline"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/text_beerlist_beername"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_marginLeft="16dip"
+        android:gravity="center_vertical"
+        android:text="@string/placeholder_beer_name"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/text_beerlist_tagline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_beer"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_beerlist_beername"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignWithParentIfMissing="true"
-            android:layout_above="@id/text_beerlist_tagline"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@id/image_beer"
-            android:gravity="center_vertical"
-            android:text="@string/placeholder_beer_name"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,7 +14,7 @@
     This layout is a two-pane layout for the Items master/detail flow.
     -->
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/beer_detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"

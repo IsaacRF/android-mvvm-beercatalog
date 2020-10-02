@@ -13,6 +13,7 @@ Android MVVM, master-detail app built in modern architecture using SOLID and CLE
 
 ## Main Features
 - 📱 [Adaptable layout](https://github.com/IsaacRF/android-mvvm-beercatalog#adaptable-layout) for Tablets and Phones of any size
+- ⏹ [Clean UI with ConstraintLayout](https://github.com/IsaacRF/android-mvvm-beercatalog#adaptable-layout)
 - 🏗 [Architecture](https://github.com/IsaacRF/android-mvvm-beercatalog#mvvm-architecture) SOLID and CLEAN compliant, under MVVM pattern
 - 📦 [Full API and BBDD consumption abstraction](https://github.com/IsaacRF/android-mvvm-beercatalog#data)
 - 💉 [Dependency Inversion and Injection](https://github.com/IsaacRF/android-mvvm-beercatalog#dependency-inversion-and-injection)
@@ -31,6 +32,8 @@ App is displayed in two pane mode on tablets, and master-detail navigation in ph
 
 ![navgraph](https://user-images.githubusercontent.com/2803925/90969152-a4217d00-e4f5-11ea-860d-b0a447bef2ee.png)
 
+Also, UI uses the last [**ConstraintLayout**](https://developer.android.com/training/constraint-layout) for Android, ensuring a flat and clean UI hierarchy and best performance.
+
 ### MVVM Architecture
 This project uses [MVVM](https://developer.android.com/jetpack/docs/guide) (Model - View - Viewmodel) architecture, via new [Jetpack ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) feature.
 
@@ -39,7 +42,7 @@ This project uses [MVVM](https://developer.android.com/jetpack/docs/guide) (Mode
 ### Development Patterns
 This project implements "By feature + layout" structure, [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) pattern and [SOLID](https://en.wikipedia.org/wiki/SOLID) and Clean principles.
 
-#### By feature + layout structure
+#### By feature + by layout structure
 Project architecture combines the "By feature" structure, consisting on separating all files concerning to a specific feature (for example, an app screen / section) on its own package, plus the "By layout" classic structure, separating all files serving a similar purpose on its own sub-package.
 
 By feature structure complies with the Separation of Concerns and encapsulation patterns, also making the app highly scalable, modular and way easier to manipulate, as deleting or adding features impact only app base layer and refactor is minimum to non-existent.

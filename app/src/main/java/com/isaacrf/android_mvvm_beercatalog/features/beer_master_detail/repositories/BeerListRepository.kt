@@ -36,7 +36,7 @@ class BeerListRepository @Inject constructor(
 
             override fun loadFromDb() = beerDao.load()
 
-            override fun apiCall() = beerListService.getBeers(1, 80)
+            override fun apiCall() = beerListService.getBeers(1, 10)
         }.asMutableLiveData()
     }
 

@@ -23,6 +23,12 @@ class BeerListViewModel @ViewModelInject constructor(
         return beerListRepository.getBeers()
     }
 
+    fun loadNextPage() {
+        //TODO: Need a Transformation or MediatorLiveData
+        //TODO: Change by corresponding method
+        beerListRepository.getBeers()
+    }
+
     fun getBeer(beerId: Int?): Beer? {
         return _beers.value?.data?.find { beer -> beer.id == beerId }
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
@@ -107,6 +108,16 @@ class BeerListFragment : Fragment() {
             items,
             isViewTwoPane
         )
+
+        recycler_beerlist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val lastPosition = layoutManager.findLastVisibleItemPosition()
+                if (lastPosition == recyclerView.adapter!!.itemCount - 1) {
+                    beerListViewModel.loadNextPage()
+                }
+            }
+        })
 
         recyclerView.adapter = beerListItemViewAdapter
 
